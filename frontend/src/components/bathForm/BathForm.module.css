@@ -1,0 +1,33 @@
+.container{
+    border: 1px solid white;
+    display: flex;
+    width: 90%;
+    margin: 50px auto;
+}
+
+.left_container{
+    border: 1px solid blue;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 50%;
+    background-color: var(--white-color);
+    color: var(--green-blue-color);
+    padding: 10px;
+}
+
+.left_container h2, h3{
+    margin: 20px 0;
+}
+
+.left_container ul{
+    list-style: none;
+    line-height: 2rem;
+}
+
+.notice {
+    margin-top: 0.1rem; 
+    margin-bottom: 10px;
+    line-height: 0.4rem; 
+}
+

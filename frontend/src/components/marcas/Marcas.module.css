@@ -1,0 +1,63 @@
+.container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 50px auto;
+    width: 100%;
+    margin-top: 30px;
+    padding: 5px;
+    max-height: 90vh;
+    overflow: auto;
+    z-index: 1;
+}
+
+/* Estilizando la barra de scroll */
+.container::-webkit-scrollbar {
+    width: 10px; /* Ancho de la barra de scroll */
+}
+
+.container::-webkit-scrollbar-thumb {
+    background-color: var(--green-blue-color); /* Color del pulgar (parte de la barra que se mueve) */
+    border-radius: 5px; /* Radio del borde del pulgar */
+}
+
+.container::-webkit-scrollbar-track {
+    background-color: var(--yellow-color); /* Color de la pista (fondo de la barra) */
+    border-radius: 5px; /* Radio del borde de la pista */
+}
+
+.container::-webkit-scrollbar-thumb:hover {
+    background-color: var(--white-color); /* Color del pulgar al hacer hover */
+}
+
+
+
+.button {
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    top: 15px; 
+    right: 15px; 
+    cursor: pointer;
+    background: none; 
+    border: 3px solid var(--white-color); 
+    font-size: 18px; 
+    border-radius: 50%;
+    color: var(--white-color);
+    width: 30px;
+    height: 30px;
+}
+
+.button:hover{
+    background-color: var(--yellow-color);
+    color: var( --green-blue-color);
+}
+
+.overlay{
+    background-color: var(--black-overlay);
+    position: fixed;
+    width: 100%;
+    min-height: 100vh;
+    z-index: 1000;
+}
+  
