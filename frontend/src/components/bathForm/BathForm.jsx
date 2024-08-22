@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./BathForm.module.css";
 import NavbarBath from "../navbar/NavbarBath";
+import FormData from "./FormData"
 
 const BathForm = () => {
   return (
@@ -22,10 +23,13 @@ const BathForm = () => {
               3. Te contactaremos 24 horas antes de tu cita al número que nos
               proporcionaste para confirmar el servicio.
             </li>
-            <li>4. ¡Tu peludito estará reluciente y feliz! 🐶</li>
+            <li>4. Vamos por él ó tu lo traes; dependiendo de los servicios que selecciones.</li>
+            <li>5. ¡Tu peludito estará reluciente y feliz! 🐶</li>
           </ul>
         </div>
-        <div className={styles.right_container}></div>
+        <div className={styles.right_container}>
+          <FormData />
+        </div>
       </div>
     </>
   );
