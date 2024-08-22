@@ -105,7 +105,7 @@ const FormData = () => {
           </div>
 
           <div className={styles.labels_container}>
-            <label htmlFor="message"><h3>Mensaje:</h3> <i>*Info adicional que nos quieras dejar</i></label>
+            <label htmlFor="message"><h3>Mensaje:</h3> <i className={styles.info}>*Info adicional que nos quieras dejar</i></label>
             <Field
               as="textarea"
               id="message"
