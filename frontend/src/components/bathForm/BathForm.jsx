@@ -16,7 +16,7 @@ const BathForm = () => {
             <li>
               2. Una vez enviado, recibirás un correo de confirmación.
               <p className={styles.notice}>
-                <em>(No olvides revisar tu carpeta de spam)</em>
+                <em>*No olvides revisar tu carpeta de spam</em>
               </p>
             </li>
             <li>

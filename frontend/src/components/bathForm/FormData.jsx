@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import styles from './FormData.module.css'
+import styles from './FormData.module.css';
+import DateSelection from '../dateSelection/DateSelection';
+import PopUp from './popUp/PopUp';
 
 const validationSchema = Yup.object({
   fullName: Yup.string()
@@ -19,10 +21,13 @@ const validationSchema = Yup.object({
   }).required('Debes seleccionar al menos un servicio'),
   petName: Yup.string()
     .required('El nombre de la mascota es obligatorio'),
-  message: Yup.string()
+  message: Yup.string(),
+  dateTime: Yup.date()
+    .required('La fecha y hora son obligatorias')
 });
 
 const FormData = () => {
+  const [showPopUp, setShowPopUp] = useState(false)
   return (
     <Formik
       initialValues={{
@@ -35,14 +40,17 @@ const FormData = () => {
         },
         petName: '',
         message: '',
+        dateTime: null, 
       }}
       validationSchema={validationSchema}
       onSubmit={(values) => {
         console.log('Formulario enviado:', values);
+        setShowPopUp((prev) => !prev);
       }}
     >
-      {() => (
+      {({ setFieldValue }) => (
         <Form className={styles.container}>
+          {showPopUp && (<PopUp />)}
           <div className={styles.labels_container}>
             <label htmlFor="fullName"><h3>Nombre:</h3></label>
             <Field
@@ -79,21 +87,28 @@ const FormData = () => {
             <ErrorMessage name="phoneNumber" component="div" className={styles.errors}/>
           </div>
 
-          <div className={styles.labels_container}>
-            <label><h3>Servicios:</h3></label>
-            <div>
-              <Field type="checkbox" id="transport" name="services.transport" />
-              <label htmlFor="transport">Transporte</label>
+          <div className={styles.servicesDate_container}>
+            <div className={styles.dateService_container}>
+              <label><h3>Fecha y hora:</h3></label>
+              <DateSelection setFieldValue={setFieldValue} /> 
+              <ErrorMessage name="dateTime" component="div" className={styles.errors}/>
             </div>
-            <div>
-              <Field type="checkbox" id="grooming" name="services.grooming" />
-              <label htmlFor="grooming">Baño y peluquería</label>
+            <div className={styles.services_container}>
+              <label><h3>Servicios:</h3></label>
+              <div>
+                <Field type="checkbox" id="transport" name="services.transport" />
+                <label htmlFor="transport">Transporte</label>
+              </div>
+              <div>
+                <Field type="checkbox" id="grooming" name="services.grooming" />
+                <label htmlFor="grooming">Baño y peluquería</label>
+                <ErrorMessage name="services" component="div" className={styles.errors}/>
+              </div>
             </div>
-            <ErrorMessage name="services" component="div" className={styles.errors}/>
           </div>
 
           <div className={styles.labels_container}>
-            <label htmlFor="petName"><h3>Nombre de la mascota:</h3></label>
+            <label htmlFor="petName"><h3>Nombre de tu mascota:</h3></label>
             <Field
               type="text"
               id="petName"

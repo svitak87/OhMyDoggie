@@ -9,8 +9,6 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
-  const [nosotros, setNosotros] = useState(false);
-  const [services, setServices] = useState(false);
   const [brands, setBrands] = useState(false);
   const menuRef = useRef(null);
 
@@ -19,9 +17,6 @@ const Navbar = () => {
     if (section) {
       section.scrollIntoView({ behavior: "smooth" });
     }
-  };
-  const handleServices = () => {
-    setServices((prev) => !prev);
   };
 
   const handleBrands = () => {

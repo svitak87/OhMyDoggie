@@ -1,0 +1,58 @@
+.overlay{
+    background-color: var(--black-overlay);
+    position: absolute;
+    right: 0%;
+    top: 0%;
+    width: 100vw;
+    min-height: 173vh;
+    z-index: 999;
+    padding: 20px;
+}
+
+.container{
+    border: 7px solid var(--yellow-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    margin: 200px auto;
+    border-radius: 15px;
+    background-color: var(--white-color);
+    padding: 20px;
+}
+
+.container h2{
+    text-align: center;
+}
+
+.button {
+    width: 100px;
+    margin: 20px auto;
+    border: 2px solid var(--green-blue-color);
+    border-radius: 15px;
+    background-color: var(--white-color);
+    color: var(--green-blue-color);
+    padding: 10px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: var(--green-blue-color);
+    color: var(--white-color);
+}
+
+
+
+@media(min-width: 200px) and (max-width: 660px){
+    .overlay{
+        /* min-height: 320vh; */
+        /* width: 110vw;
+        padding: 100px; */
+    }
+    
+    .container{
+        width: 80%;
+    }
+}
+  
