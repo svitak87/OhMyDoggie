@@ -46,6 +46,10 @@ const FormData = () => {
       onSubmit={(values) => {
         console.log('Formulario enviado:', values);
         setShowPopUp((prev) => !prev);
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth", 
+        });
       }}
     >
       {({ setFieldValue }) => (

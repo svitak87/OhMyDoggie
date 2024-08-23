@@ -17,6 +17,13 @@ const Footer = () => {
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  const scrollingTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "auto"
+    })
+  }
   return (
     <>
       {isMobile ? (
@@ -24,7 +31,7 @@ const Footer = () => {
       ) : (
         <div className={styles.footer_container}>
           <div className={styles.logo_container}>
-            <img src={logo} alt="logo oh my doggie" className={styles.logo} />
+            <img src={logo} alt="logo oh my doggie" className={styles.logo} onClick={scrollingTop}/>
           </div>
           <div className={styles.social_media_container}>
             <h2>Síguenos en</h2>

@@ -24,7 +24,6 @@
 
 @media (min-width: 660px) and (max-width: 900px) {
     .datePickerWrapper {
-        border: 1px solid red;
         position: absolute;
         top: auto;
         left: 0%;
@@ -48,8 +47,24 @@
     }
 }
 
-@media(min-width: 350px) and (max-width: 375px){
+@media(max-width: 376px){
     .datePickerWrapper{
-        width: 85vw;
+        width: 91vw;
+    }
+}
+@media(max-width: 360px){
+    .datePickerWrapper{
+        width: 95vw;
+    }
+    .datePicker {
+        width: 82vw;
+    }
+}
+@media(max-width: 344px){
+    .datePickerWrapper{
+        width: 96vw;
+    }
+    .datePicker {
+        width: 82vw;
     }
 }
