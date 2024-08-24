@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Marcas.module.css";
-import fetchBrands from "../../helpers/fetchData";
+import { fetchBrands } from "../../helpers/fetchData";
 import Marca from "./Marca";
 
 const Marcas = () => {
@@ -21,7 +21,9 @@ const Marcas = () => {
     <>
       {isVisible && (
         <div className={styles.overlay}>
-          <button onClick={handleVisible} className={styles.button}>x</button>
+          <button onClick={handleVisible} className={styles.button}>
+            x
+          </button>
           <div className={styles.container}>
             {data.length > 0 &&
               data.map((brand) => (
