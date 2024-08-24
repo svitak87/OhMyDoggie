@@ -18,7 +18,7 @@
 }
 
 .left_navbar_container {
-    width: 50%;
+    width: 30%;
     height: 100%;
     padding: 0 5px;
 }
@@ -28,7 +28,7 @@
 }
 
 .right_navbar_container {
-    width: 35%;
+    width: 70%;
     height: 100%;
     display: flex;
 }
@@ -36,7 +36,7 @@
 .list_container {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content:flex-end;
     align-items: center;
     width: 100%;
     list-style-type: none;
@@ -78,6 +78,12 @@
 @media (min-width: 200px) and (max-width: 1200px) {
     .right_navbar_container {
         width: 80%;
+    }
+}
+
+@media (min-width: 661px) and (max-width: 722px){
+    .navbar_container{
+        width: 100%;
     }
 }
 

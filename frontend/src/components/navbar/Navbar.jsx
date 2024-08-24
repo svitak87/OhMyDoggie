@@ -65,6 +65,9 @@ const Navbar = () => {
                     <li onClick={handleBrands} className={styles.list_items}>
                       Marcas
                     </li>
+                    <Link to="/login" className={styles.link}>
+                      <li className={styles.list_items}>Gestión</li>
+                    </Link>
                   </ul>
                 </>
               )}
@@ -77,6 +80,9 @@ const Navbar = () => {
                   <li>Baño y Peluquería</li>
                 </Link>
                 <li onClick={handleBrands}>Marcas</li>
+                <Link to="/login" className={styles.link}>
+                  <li>Gestión</li>
+                </Link>
               </ul>
             </div>
           )}

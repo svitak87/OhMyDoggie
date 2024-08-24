@@ -4,6 +4,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 const server = express();
 const router = require("./routes/appointments");
+const adminRoute = require("./routes/adminRoutes")
 const { sequelize } = require("./database");
 
 const PORT = process.env.PORT || 3002;
@@ -13,6 +14,7 @@ server.use(cors());
 server.use(express.json());
 
 server.use(router);
+server.use(adminRoute)
 
 const main = async () => {
   try {

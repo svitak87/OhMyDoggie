@@ -4,7 +4,7 @@
     right: 0%;
     top: 0%;
     width: 100vw;
-    min-height: 173vh;
+    min-height: 100vh;
     z-index: 999;
     padding: 20px;
 }
@@ -16,13 +16,14 @@
     justify-content: center;
     align-items: center;
     width: 30%;
-    margin: 200px auto;
+    margin: 100px auto;
     border-radius: 15px;
     background-color: var(--white-color);
     padding: 20px;
 }
 
-.container h2{
+.title,
+.message{
     text-align: center;
 }
 
@@ -42,12 +43,8 @@
     color: var(--white-color);
 }
 
-
-
 @media(min-width: 200px) and (max-width: 660px){
-    
     .container{
         width: 80%;
     }
 }
-  

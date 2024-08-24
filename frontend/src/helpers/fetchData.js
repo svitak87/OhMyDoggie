@@ -11,7 +11,7 @@ export const fetchBrands = () => {
 
 export const addAppointment = async (appointmentData) => {
   try {
-    const response = await fetch("http://localhost:3002/add-appoinment", {
+    const response = await fetch("http://localhost:3002/add-appointment", {
       method: "POST",
       headers: {
         "Content-Type": "application/json", 

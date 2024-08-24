@@ -43,5 +43,5 @@ module.exports = (sequelize) => {
     }
   );
 
-  return Appointment; // Asegúrate de devolver el modelo
+  return Appointment; 
 };

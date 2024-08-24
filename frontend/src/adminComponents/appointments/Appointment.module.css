@@ -1,0 +1,14 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    border: 7px solid var(--yellow-color);
+    background-color: var(--white-color); 
+    padding: 15px;
+    border-radius: 15px;
+    width: 30%;
+    margin: 5px 20px;   
+}
+
+.list_container{
+    list-style: none;
+}

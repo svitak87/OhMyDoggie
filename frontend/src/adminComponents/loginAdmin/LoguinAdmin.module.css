@@ -1,0 +1,82 @@
+.container{
+    border: 1px solid white;
+    display: flex;
+    flex-direction:column;
+    width: 30%;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: var(--white-color);
+    border-radius: 15px;
+}
+
+.email_container,
+.password_container{
+    display: flex;
+    flex-direction: column;
+    height: 80px;
+}
+
+.email_container label,
+.password_container label{
+    color: var(--green-blue-color);
+    margin-bottom: 10px;
+}
+
+.inputs{
+    height: 30px;
+    background-color: var(--white-color);
+    border: 2px solid var(--green-blue-color);
+    padding: 10px;
+    border-radius: 5px;
+}
+.button {
+    width: 200px;
+    margin: 20px auto;
+    border: 2px solid var(--green-blue-color);
+    border-radius: 15px;
+    background-color: var(--white-color);
+    color: var(--green-blue-color);
+    padding: 10px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: var(--green-blue-color);
+    color: var(--white-color);
+}
+
+.errors{
+    color: red;
+    font-size: 0.7rem;
+}
+
+@media (max-width: 1100px){
+    .container{
+        width: 35%;
+    }
+}
+@media (max-width: 900px){
+    .container{
+        width: 40%;
+    }
+}
+@media (max-width: 800px){
+    .container{
+        width: 50%;
+    }
+}
+@media (max-width: 700px){
+    .container{
+        width: 55%;
+    }
+}
+@media (max-width: 600px){
+    .container{
+        width: 60%;
+    }
+}
+@media (max-width: 500px){
+    .container{
+        width: 80%;
+    }
+}
