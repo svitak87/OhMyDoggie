@@ -12,7 +12,7 @@ const Nosotros = () => {
             Somos un emprendimiento apasionado por el bienestar y la felicidad
             de tu mascota. Ubicados en Bogotá, nos comprometemos a ofrecer una
             amplia variedad de alimentos de alta calidad, juguetes, accesorios y
-            snacks exclusivamente para perros y gatos. Nuestro equipo está
+            snacks para tu mejor amigo. Nuestro equipo está
             dedicado a brindar un servicio excepcional, entendiendo las
             necesidades únicas de cada mascota y su dueño. Además, ofrecemos
             servicios de baño y peluquería para que tu peludo siempre luzca y se

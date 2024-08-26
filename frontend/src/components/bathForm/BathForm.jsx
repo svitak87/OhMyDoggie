@@ -9,7 +9,7 @@ const BathForm = () => {
       <NavbarBath />
       <div className={styles.container}>
         <div className={styles.left_container}>
-          <h2>¡Bienvenidos al servicio de baño y peluquería!</h2>
+          <h2>Bienvenidos a la agenda de servicios.</h2>
           <h3>¿Cómo funciona?</h3>
           <ul>
             <li>1. Completa el formulario con los datos solicitados.</li>

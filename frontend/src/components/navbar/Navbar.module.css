@@ -42,11 +42,24 @@
     list-style-type: none;
 }
 
+
 .list_container li:hover {
-    background-color: rgba(var(--yellow-color), 0.3); 
-    height: 45px;
+    background-color: rgba(var(--yellow-color-rgb));
+    color: var(--white-color);
+}
+
+  .submenu_items{
+    border: 1px solid white;
+    background-color: var(--white-color);
+    position: absolute;
+    margin-top: 20px;
+    list-style-type: none;
   }
-  
+
+  .submenu_items li:hover{
+    background-color: rgba(var(--yellow-color-rgb));
+    color: var(--white-color);
+  }
 
 .list_container li {
     position: relative;
@@ -124,5 +137,13 @@
     .list_items:hover {
         background-color: var(--white-color);
         color: var(--green-blue-color);
+    }
+    .submenu_items li{
+        border: 1px solid var(--green-blue-color); 
+        padding: 20px;
+        cursor: pointer;
+        color: var(--green-blue-color);
+        font-family: var(--font-family-montserrat);
+        font-weight: bold;
     }
 }

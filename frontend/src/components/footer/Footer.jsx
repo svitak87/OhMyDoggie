@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Footer.module.css";
 import logo from "../../assets/logo_footer.jpg";
-import whatsappQR from "../../assets/whatsapp.png";
+import whatsappQR from "../../assets/qrcode-573505107369.jpg";
 import FooterMobile from "./FooterMobile";
 
 const Footer = () => {

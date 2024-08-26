@@ -8,8 +8,10 @@
   padding: 0;
   --white-color: rgb(255, 255, 255);
   --yellow-color: rgb(255, 200, 69);
+  --yellow-color-rgb: 255, 200, 69;
   --green-blue-color: rgb(0, 147, 178);
-  --black-overlay: rgba(0, 0, 0, 0.6);
+  --green-blue-color-rgb: 0, 147, 178;
+  --black-overlay: rgba(3, 2, 2, 0.6);
   --font-family-montserrat: 'Montserrat', sans-serif;
 }
 

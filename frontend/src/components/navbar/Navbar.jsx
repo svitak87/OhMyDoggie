@@ -9,8 +9,10 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
+  const [showSubmenu, setShowSubmenu] = useState(false);
   const [brands, setBrands] = useState(false);
   const menuRef = useRef(null);
+  const submenuRef = useRef(null);
 
   const handleNosotros = () => {
     const section = document.getElementById("nosotros");
@@ -19,11 +21,23 @@ const Navbar = () => {
     }
   };
 
+  const handleSubmenu = () => {
+    setShowSubmenu((prev) => !prev);
+  };
+
   const handleBrands = () => {
     setBrands((prev) => !prev);
-  };
+  }
+
   const handleMenu = () => {
     setOpenMenu((prev) => !prev);
+  };
+  
+  const handleClickOutside = (event) => {
+    if (menuRef.current && !menuRef.current.contains(event.target)) {
+      setOpenMenu(false);
+      setShowSubmenu(false);
+    }
   };
 
   useEffect(() => {
@@ -33,21 +47,25 @@ const Navbar = () => {
 
     handleResize();
     window.addEventListener("resize", handleResize);
+    document.addEventListener("mousedown", handleClickOutside);
 
-    return () => window.removeEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
   }, []);
 
   return (
     <>
       <header className={styles.header_container}>
-        <nav className={styles.navbar_container}>
+        <nav className={styles.navbar_container} ref={menuRef}>
           <div className={styles.left_navbar_container}>
             <div className={styles.logo_container}>
               <img src={logo} className={styles.logo} alt="Logo Oh myDoggie" />
             </div>
           </div>
           {isMobile ? (
-            <div className={styles.menu_container} ref={menuRef}>
+            <div className={styles.menu_container}>
               <FontAwesomeIcon
                 icon={faBars}
                 className={styles.menu_icon}
@@ -60,14 +78,21 @@ const Navbar = () => {
                       Nosotros
                     </li>
                     <Link to="/reserva" className={styles.link}>
-                      <li className={styles.list_items}>Baño y Peluquería</li>
+                      <li className={styles.list_items}>Agéndate</li>
                     </Link>
-                    <li onClick={handleBrands} className={styles.list_items}>
-                      Marcas
-                    </li>
                     <Link to="/login" className={styles.link}>
                       <li className={styles.list_items}>Gestión</li>
                     </Link>
+                    <li onClick={handleSubmenu} className={styles.list_items}>
+                      Portafolio
+                      {/* Submenu */}
+                      {showSubmenu && (
+                        <ul className={styles.submenu_items}>
+                          <li className={styles.submenu_item} onClick={handleBrands}>Alimento</li>
+                          <li className={styles.submenu_item}>Accesorios</li>
+                        </ul>
+                      )}
+                    </li>
                   </ul>
                 </>
               )}
@@ -77,9 +102,17 @@ const Navbar = () => {
               <ul className={styles.list_container}>
                 <li onClick={handleNosotros}>Nosotros</li>
                 <Link to="/reserva" className={styles.link}>
-                  <li>Baño y Peluquería</li>
+                  <li>Agéndate</li>
                 </Link>
-                <li onClick={handleBrands}>Marcas</li>
+                <li onClick={handleSubmenu}>
+                  Portafolio
+                  {showSubmenu && (
+                    <ul className={styles.submenu_items}>
+                      <li className={styles.submenu_item} onClick={handleBrands}>Alimento</li>
+                      <li className={styles.submenu_item}>Accesorios</li>
+                    </ul>
+                  )}
+                </li>
                 <Link to="/login" className={styles.link}>
                   <li>Gestión</li>
                 </Link>

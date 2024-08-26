@@ -1,19 +1,18 @@
 require("dotenv").config();
 const { Sequelize } = require("sequelize");
-const defineAppointment = require("./models/appointment"); // Importa la función que define el modelo
+const defineAppointment = require("./models/appointment"); 
 const defineAdmin = require("./models/adminModel")
 
-const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
+const { DB_USER, DB_PASSWORD, DB_HOST, DATA_BASE } = process.env;
 
 const sequelize = new Sequelize(
-  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/ohmydoggie`,
+  `${DB_USER}://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DATA_BASE}`,
   {
     logging: false,
     native: false,
   }
 );
 
-// Define el modelo 'Appointment' con Sequelize
 const Appointment = defineAppointment(sequelize); 
 const Admin = defineAdmin(sequelize)
 

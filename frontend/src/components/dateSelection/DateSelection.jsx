@@ -49,7 +49,7 @@ const DateSelection = ({ setFieldValue }) => {
         setMinTime(min);
 
         const max = new Date();
-        max.setHours(13, 0, 0);
+        max.setHours(15, 0, 0);
         setMaxTime(max);
       } else {
         const min = new Date();
@@ -82,7 +82,7 @@ const DateSelection = ({ setFieldValue }) => {
         showTimeSelect
         timeFormat="HH:mm"
         dateFormat="dd/MM/yyyy HH:mm"
-        timeIntervals={30}
+        timeIntervals={60}
         filterDate={filterWeekends}
         placeholderText="Selecciona una fecha y hora"
         minTime={minTime}

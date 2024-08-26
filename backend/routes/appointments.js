@@ -43,7 +43,7 @@ route.post("/add-appointment", async (req, res) => {
       message,
       dateTime,
     });
-    res.status(200).json({ message: "Turno agendado con éxito" });
+    res.status(201).json({ message: "Turno agendado con éxito" });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

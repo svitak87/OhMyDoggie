@@ -35,10 +35,10 @@ const loginAdmin = async (credentialData) => {
         if (passwordMatch) {
           return userFound;
         } else {
-          throw new Error("User not allowed");
+          throw new Error("Password doesn't match");
         }
       } else {
-        throw new Error("User not allowed");
+        throw new Error("Admin doesn't exists");
       }
     } else {
       throw new Error("Email and password are required");
@@ -48,4 +48,18 @@ const loginAdmin = async (credentialData) => {
   }
 };
 
-module.exports = { addAdmin, loginAdmin };
+//buscar admin por ID;
+const getAdminById = async (id) => {
+  try {
+    const admin = await Admin.findOne({ where: { id: id } });
+    if (!admin) {
+      throw new Error('Admin not found');
+    } else {
+      return user;
+    }
+  } catch (error) {
+    throw error;
+  }
+};
+
+module.exports = { addAdmin, loginAdmin, getAdminById };

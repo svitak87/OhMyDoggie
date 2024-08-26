@@ -1,13 +1,14 @@
 const express = require("express");
 const route = express.Router();
 const { addAdmin, loginAdmin } = require("../controllers/adminControllers");
+const { generateToken } = require("../utils/jwtAuthPayload");
 
 route.post("/add-admin", async (req, res) => {
   try {
     const { name, email, password } = req.body;
     const newAddmin = await addAdmin({ name, email, password });
     if (newAddmin) {
-      res.status(200).json({ message: "Administratos succesfully created" });
+      res.status(200).json({ message: "Administrator succesfully created" });
     }
   } catch (error) {
     if (error) {
@@ -19,9 +20,12 @@ route.post("/add-admin", async (req, res) => {
 route.post("/login-admin", async (req, res) => {
   try {
     const { email, password } = req.body;
-    const loguedAdmin = await loginAdmin({ email, password });
-    if (loguedAdmin) {
-      res.status(200).json({ message: "Admin logued succesfully" });
+    const admin = await loginAdmin({ email, password });
+    if (admin) {
+      const token = generateToken(admin);
+      res.status(200).json({ admin: admin, token: token , message: "Admin logued succesfully"});
+    } else {
+      res.status(401).json({ error: "Invalid credentials" });
     }
   } catch (error) {
     if (error) {

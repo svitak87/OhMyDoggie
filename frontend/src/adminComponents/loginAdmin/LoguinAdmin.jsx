@@ -48,7 +48,6 @@ const LoguinAdmin = () => {
           <div className={styles.email_container}>
             <label htmlFor="email">Correo Electrónico</label>
             <Field type="email" name="email" className={styles.inputs} />
-            {/* ErrorMessage con className para estilos */}
             <ErrorMessage
               name="email"
               component="div"
@@ -58,14 +57,12 @@ const LoguinAdmin = () => {
           <div className={styles.password_container}>
             <label htmlFor="password">Contraseña</label>
             <Field type="password" name="password" className={styles.inputs} />
-            {/* ErrorMessage con className para estilos */}
             <ErrorMessage
               name="password"
               component="div"
               className={styles.errors}
             />
           </div>
-          {/* Manejo de errores generales */}
           {errors.general && (
             <div className={styles.errors}>{errors.general}</div>
           )}
