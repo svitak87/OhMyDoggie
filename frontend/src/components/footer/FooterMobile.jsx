@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "../../assets/logo_ohmydoggie.png";
-import whatsappQR from "../../assets/whatsapp.png";
+import whatsappQR from "../../assets/qrcode-573505107369.jpg";
 import styles from "./FooterMobile.module.css";
 
 const FooterMobile = () => {

@@ -1,14 +1,54 @@
 .container {
     display: flex;
-    flex-direction: column;
     border: 7px solid var(--yellow-color);
-    background-color: var(--white-color); 
-    padding: 15px;
+    background-color: var(--white-color);
+    padding: 10px;
     border-radius: 15px;
     width: 30%;
-    margin: 5px 20px;   
+    margin: 5px 10px;   
 }
 
+.left_container{
+    width: 90%;
+}
+
+.right_container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 10%;
+    height: 50px; 
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .iconButton {
+    font-size: 1rem;
+    height: 30px; /* Ajusta la altura según sea necesario */
+    width: 30px; /* Ajusta el ancho para que sea cuadrado */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0; /* Elimina cualquier relleno extra */
+    margin: 5px; /* Elimina cualquier margen extra */
+  }
+  
+
+.fullName{
+    text-align:start;
+    font-size: 1.2rem;
+}
+
+.email{
+    font-size: 0.8rem;
+}
 .list_container{
     list-style: none;
 }
+
+@media(min-width: 200px) and (max-width: 660px){
+    .container{
+        width: 95%;
+    }
+}
+

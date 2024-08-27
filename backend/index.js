@@ -12,7 +12,7 @@ const { sequelize } = require("./database");
 const PORT = process.env.PORT || 3002;
 const serverLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutos
-  max: 10,
+  max: 100,
   message: "Too many requests from this IP, please try again later.",
 });
 

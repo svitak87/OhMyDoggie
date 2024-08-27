@@ -1,30 +1,21 @@
-import React, { useEffect, useState } from "react";
-import { fetchAppointments } from "../../helpers/adminFetch";
+import React, { useEffect } from "react";
+import { getAllAppointments } from "../../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
 import Appointment from "./Appointment";
-import styles from "./Appointments.module.css"
-
+import styles from "./Appointments.module.css";
+import Navbar from "../extraComponents/Navbar";
 
 const Appointments = () => {
-  const [appointments, setAppointments] = useState([]);
+  const appointments = useSelector((state) => state.appointments);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const getAppointments = async () => {
-      try {
-        const data = await fetchAppointments();
-        if (data) {
-          setAppointments(data); 
-        }
-      } catch (error) {
-        return error;
-      }
-    };
+    dispatch(getAllAppointments());
+  }, [dispatch]);
 
-    getAppointments();
-  }, []);
-
-  console.log(appointments);
   return (
     <>
+    <Navbar />
       <div className={styles.container}>
         {appointments.length > 0 &&
           appointments.map((appointment, index) => (

@@ -4,7 +4,8 @@ import * as Yup from "yup";
 import styles from "./FormData.module.css";
 import DateSelection from "../dateSelection/DateSelection";
 import PopUp from "./popUp/PopUp";
-import { addAppointment } from "../../helpers/fetchData";
+import { createAppointment } from "../../../redux/actions";
+import { useDispatch } from "react-redux";
 
 const validationSchema = Yup.object({
   fullName: Yup.string()
@@ -34,6 +35,7 @@ const validationSchema = Yup.object({
 
 const FormData = () => {
   const [showPopUp, setShowPopUp] = useState(false);
+  const dispatch = useDispatch();
   return (
     <Formik
       initialValues={{
@@ -56,7 +58,7 @@ const FormData = () => {
           top: 0,
           behavior: "smooth",
         });
-        addAppointment(values)
+        dispatch(createAppointment(values));
       }}
     >
       {({ setFieldValue }) => (
