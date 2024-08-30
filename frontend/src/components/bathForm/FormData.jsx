@@ -30,7 +30,7 @@ const validationSchema = Yup.object({
   ),
   petName: Yup.string().required("El nombre de la mascota es obligatorio"),
   message: Yup.string(),
-  dateTime: Yup.date().required("La fecha y hora son obligatorias"),
+  dateTime: Yup.string().required("La fecha y hora son obligatorias"),
 });
 
 const FormData = () => {

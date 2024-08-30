@@ -1,6 +1,7 @@
 .container{
     border: 1px solid white;
     display: flex;
+    width: 90%;
     flex-wrap: wrap;
     justify-content: flex-start;
     margin: 100px auto;

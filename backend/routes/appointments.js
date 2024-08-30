@@ -4,6 +4,9 @@ const {
   addAppointment,
   verifyAppointment,
   getAllAppointments,
+  updateAppointment,
+  deleteAppointment,
+  getAppointmentByQuery,
 } = require("../controllers/appointmentController");
 
 //traer todos los turnos de la base de datos
@@ -46,6 +49,61 @@ route.post("/add-appointment", async (req, res) => {
     res.status(201).json({ message: "Turno agendado con éxito" });
   } catch (error) {
     res.status(500).json({ error: error.message });
+  }
+});
+
+//actualizar turno en la base de datos (email, phoneNumber, dateTime)
+
+route.put("/update_appointment", async (req, res) => {
+  try {
+    const { email, newEmail, newPhoneNumber, newDateTime } = req.body;
+    await updateAppointment({
+      email,
+      newEmail,
+      newPhoneNumber,
+      newDateTime,
+    });
+    res.status(201).json({ message: "appointment succesfully updated" });
+  } catch (error) {
+    if (error) {
+      res.status(403).json({ error: error });
+    } else {
+      res.status(500).json({ error: "Internal server error" });
+    }
+  }
+});
+
+route.delete("/delete-appointment/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = await deleteAppointment(id);
+    res.status(200).json({ message: result });
+  } catch (error) {
+    if (error) {
+      res.status(404).json({ error: error });
+    } else {
+      res.status(500).json({ error: "Internal server error" });
+    }
+  }
+});
+
+route.get("/search-by-query", async (req, res) => {
+  try {
+    const { value } = req.query;
+    if (!value) {
+      res.status(403).json({ error: "A query must be needed" });
+    } else {
+      const result = await getAppointmentByQuery(value);
+      if (result) {
+        res.status(200).json({ appointment: result });
+      }
+    }
+  } catch (error) {
+    if (error) {
+      res.status(404).json({ error: error.message });
+    } else {
+      res.status(500).json({ error: "Internal server error" });
+    }
   }
 });
 
