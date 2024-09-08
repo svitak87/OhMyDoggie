@@ -39,7 +39,6 @@ const UpdateAppointment = ({ email, setUpdateForm }) => {
   const handleFormSubmit = async (values, { setSubmitting }) => {
 
     try {
-      console.log(values)
       await dispatch(updateAppointment(values));
       dispatch(getAllAppointments());
       setUpdateForm(false);
@@ -130,7 +129,7 @@ const UpdateAppointment = ({ email, setUpdateForm }) => {
                   <label>
                     <h3>Fecha y hora:</h3>
                   </label>
-                  <DateSelection setFieldValue={setFieldValue} />
+                  <DateSelection setFieldValue={setFieldValue} dateFieldName="newDateTime"/>
                   <ErrorMessage
                     name="newDateTime"
                     id="newDateTime"

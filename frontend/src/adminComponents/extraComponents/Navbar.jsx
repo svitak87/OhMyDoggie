@@ -11,6 +11,10 @@ const Navbar = () => {
 
   const handleLogOut = () => {
     dispatch(logOutAdmin());
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
     navigate("/");
   };
 

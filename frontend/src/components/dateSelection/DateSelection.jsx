@@ -4,7 +4,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import styles from "./DateSelection.module.css";
 import { isSunday, isSaturday, format } from "date-fns";
 
-const DateSelection = ({ setFieldValue }) => {
+const DateSelection = ({ setFieldValue, dateFieldName }) => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [minTime, setMinTime] = useState(new Date());
   const [maxTime, setMaxTime] = useState(new Date());
@@ -26,7 +26,7 @@ const DateSelection = ({ setFieldValue }) => {
     setSelectedDate(date);
     if (date) {
       const formattedDate = format(date, 'dd/MM/yyyy HH:mm');
-      setFieldValue("newDateTime", formattedDate); // Enviar como cadena formateada
+      setFieldValue(dateFieldName, formattedDate); // Usar la prop dateFieldName para determinar el campo
     }
   };
 

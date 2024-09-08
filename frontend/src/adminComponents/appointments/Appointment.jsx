@@ -24,11 +24,12 @@ const Appointment = ({
   const handleDelete = async () => {
     try {
       await dispatch(deleteAppointment(id));
-      dispatch(getAllAppointments());
+      await dispatch(getAllAppointments());
     } catch (error) {
       console.error("Error al eliminar la cita:", error);
     }
   };
+  
   
 
   return (
@@ -42,17 +43,18 @@ const Appointment = ({
             <h3 className={styles.email}>{email}</h3>
             <h3>{phoneNumber}</h3>
             <ul className={styles.list_container}>
-              <li>Transporte: {services.transport ? "Sí" : "No"}</li>
-              <li>Baño y peluquería: {services.grooming ? "Sí" : "No"}</li>
+              <li>Transporte: {services && services.transport ? "Sí" : "No"}</li>
+              <li>Baño y peluquería: {services && services.grooming ? "Sí" : "No"}</li>
+              <li>Otro: {services && services.other ? "Sí" : "No"}</li>
             </ul>
             <p>{dateTime}hrs</p>
           </div>
 
           <div className={styles.right_container}>
-            <button className={styles.iconButton} onClick={handleClickUpdate}>
+            <button className={styles.iconButton} onClick={handleClickUpdate} title="Actualizar">
               <FontAwesomeIcon icon={faSync} /> {/* Icono de actualizar */}
             </button>
-            <button className={styles.iconButton} onClick={handleDelete}>
+            <button className={styles.iconButton} onClick={handleDelete} title="Eliminar">
               <FontAwesomeIcon icon={faTrash} /> {/* Icono de eliminar */}
             </button>
           </div>

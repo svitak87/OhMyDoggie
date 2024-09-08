@@ -2,25 +2,31 @@ const { Op } = require("sequelize");
 const { Appointment } = require("../database");
 const appointment = require("../models/appointment");
 
+
+//crear turno
 const addAppointment = async (appointmentData) => {
   const { fullName, email, phoneNumber, services, petName, message, dateTime } =
     appointmentData;
-
   if (
     !fullName ||
     !email ||
     !phoneNumber ||
     !services ||
     !petName ||
-    !message ||
+    !message
+  ) {
+    throw new Error("Los datos obligatorios deben ser proporcionados");
+  }
+  if (
+    (services.transport || services.grooming) &&
     !dateTime
   ) {
-    throw new Error("All data are required");
-  } else {
-    const appointmentCreated = await Appointment.create(appointmentData);
-    return appointmentCreated;
+    throw new Error("La fecha y hora son obligatorias para los servicios seleccionados");
   }
+  const appointmentCreated = await Appointment.create(appointmentData);
+  return appointmentCreated;
 };
+
 
 const getAllAppointments = async () => {
   try {
@@ -29,21 +35,6 @@ const getAllAppointments = async () => {
     });
 
     if (allAppointments.length > 0) {
-      // const formattedAppointments = allAppointments.map((appointment) => {
-      //   const date = new Date(appointment.dateTime);
-      //   const year = date.getFullYear();
-      //   const month = String(date.getMonth() + 1).padStart(2, "0"); 
-      //   const day = String(date.getDate()).padStart(2, "0");
-      //   const hours = String(date.getHours()).padStart(2, "0");
-      //   const minutes = String(date.getMinutes()).padStart(2, "0");
-      //   const formattedDateTime = `${day}-${month}-${year} ${hours}:${minutes}`;
-      //   return {
-      //     ...appointment.toJSON(),
-      //     dateTime: formattedDateTime,
-      //   };
-      // });
-
-      // return formattedAppointments;
       return allAppointments
     } else {
       throw new Error("There are no appointments");
@@ -107,10 +98,10 @@ const deleteAppointment = async (id) => {
 
 const getAppointmentByQuery = async (appointmentData) => {
   try {
-    const stringData = String(appointmentData)
+    const stringData = String(appointmentData);
     const lowercaseQuery = stringData.toLowerCase();
 
-    const appointmentFound = await Appointment.findAll({
+    const appointmentsFound = await Appointment.findAll({
       where: {
         [Op.or]: [
           {
@@ -125,29 +116,37 @@ const getAppointmentByQuery = async (appointmentData) => {
           },
           {
             fullName: {
-              [Op.iLike]: `%${lowercaseQuery}`,
+              [Op.iLike]: `%${lowercaseQuery}%`,
+            },
+          },
+          {
+            dateTime: {
+              [Op.iLike]: `%${lowercaseQuery}%`,
             },
           }
         ],
       },
     });
-    if(appointmentFound.length > 0){
-      const appointment = {
-        id: appointmentFound[0].id,
-        fullName: appointmentFound[0].fullName, 
-        email: appointmentFound[0].email,
-        phoneNumber: appointmentFound[0].phoneNumber,
-        services: appointmentFound[0].services,
-        dateTime: appointmentFound[0].dateTime,
-      }
-      return appointment
-    }else{
-      throw new Error("There is not an appointment with data")
+
+    if (appointmentsFound.length > 0) {
+      const appointments = appointmentsFound.map(appointment => ({
+        id: appointment.id,
+        fullName: appointment.fullName,
+        email: appointment.email,
+        phoneNumber: appointment.phoneNumber,
+        services: appointment.services,
+        dateTime: appointment.dateTime,
+      }));
+
+      return appointments;  
+    } else {
+      return null
     }
   } catch (error) {
-    throw error
+    throw error;
   }
-}
+};
+
 
 
 const verifyAppointment = async (date) => {

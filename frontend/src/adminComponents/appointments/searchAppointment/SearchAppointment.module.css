@@ -1,0 +1,39 @@
+.container{
+    border: 1px solid yellow;
+}
+
+.left_container{
+    border: 1px solid white;
+    width: 55%;
+    padding: 10px;
+}
+
+.form{
+    display: flex;
+    color: var(--white-color);
+}
+
+.input{
+    margin-left: 10px;
+    border-radius: 5px;
+    padding: 3px;
+}
+
+.label_input_button{
+    border: 1px solid red;
+}
+
+.button {
+    width: 80px;
+    height: 25px;
+    border: 2px solid var(--green-blue-color);
+    border-radius: 15px;
+    background-color: var(--white-color);
+    color: var(--green-blue-color);
+    padding: 2px;
+    cursor: pointer;
+}
+
+.errors{
+    color: red;
+}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Intro.module.css";
 import black_dog from "../../assets/black_dog.png";
-import ohMyDoggie from "../../assets/oh_my_doggie.jpg";
+import ohMyDoggie from "../../assets/logo front.png";
 
 const Intro = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -20,7 +20,7 @@ const Intro = () => {
   return (
     <div className={styles.container}>
       <div className={styles.intro_container}>
-        <h3 className={styles.intro}>¡Hola, bienvenidos a </h3>
+        <h3 className={styles.intro}>¡Qué suerte tenemos! ¡Nos descubriste! </h3>
         <h1 className={styles.title}>
           <span className={styles.hiddenText}>OH MY DOGGIE</span>
           <img
@@ -29,12 +29,13 @@ const Intro = () => {
             className={styles.ohMyDoggie}
           />
         </h1>
-        <p className={styles.welcomeMessage}>
+        {/* <p className={styles.welcomeMessage}>
           🐾 Todo para tu mascota, con amor y cuidado. Tienda de mascotas
           con productos únicos. 🛒 🛁 Servicio de baño y spa para consentirlos. 🐶
           🚚 Transporte seguro hasta tu puerta. 🚪<br /> 🌟Cuidamos de ellos, como
           parte de nuestra familia.
-        </p>
+        </p> */}
+
       </div>
       <div className={styles.dog_container}>
         <img

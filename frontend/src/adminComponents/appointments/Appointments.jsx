@@ -5,7 +5,7 @@ import Appointment from "./Appointment";
 import styles from "./Appointments.module.css";
 import Navbar from "../extraComponents/Navbar";
 import SearchBar from "./searchAppointment/SearchAppointment";
-
+import OrderAppointments from "./orderAppointments/OrderAppointments";
 const Appointments = () => {
   const appointments = useSelector((state) => state.appointments);
   const dispatch = useDispatch();
@@ -16,10 +16,11 @@ const Appointments = () => {
 
   return (
     <>
-    <Navbar />
-    <SearchBar />
+      <Navbar />
+      <SearchBar />
+      <OrderAppointments />
       <div className={styles.container}>
-        {appointments.length > 0 ?
+        {appointments && appointments.length > 0 ? (
           appointments.map((appointment, index) => (
             <Appointment
               key={appointment.id || index}
@@ -30,10 +31,14 @@ const Appointments = () => {
               services={appointment.services}
               dateTime={appointment.dateTime}
             />
-          )): <h2>No hay turnos OH MY DOGGGIE</h2>}
+          ))
+        ) : (
+          <h2>No hay turnos OH MY DOGGGIE</h2>
+        )}
       </div>
     </>
   );
 };
 
 export default Appointments;
+

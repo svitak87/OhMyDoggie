@@ -77,7 +77,7 @@ route.delete("/delete-appointment/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const result = await deleteAppointment(id);
-    res.status(200).json({ message: result });
+    res.status(200).json(result);
   } catch (error) {
     if (error) {
       res.status(404).json({ error: error });
@@ -91,21 +91,21 @@ route.get("/search-by-query", async (req, res) => {
   try {
     const { value } = req.query;
     if (!value) {
-      res.status(403).json({ error: "A query must be needed" });
+      return res.status(403).json({ error: "A query must be needed" });
     } else {
-      const result = await getAppointmentByQuery(value);
-      if (result) {
-        res.status(200).json({ appointment: result });
+      const results = await getAppointmentByQuery(value);
+      if (results) {
+        res.status(200).json({ appointments: results }); 
+      } else {
+        res.status(404).json({ error: "No appointment found with the provided data" }); // Mensaje de error más claro
       }
     }
   } catch (error) {
-    if (error) {
-      res.status(404).json({ error: error.message });
-    } else {
-      res.status(500).json({ error: "Internal server error" });
-    }
+    res.status(500).json({ error: "Internal server error" });
   }
 });
+
+
 
 // Verificar turno
 route.get("/verify-appointment", async (req, res) => {

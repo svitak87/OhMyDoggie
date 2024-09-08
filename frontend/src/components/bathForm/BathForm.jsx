@@ -1,7 +1,8 @@
 import React from "react";
 import styles from "./BathForm.module.css";
 import NavbarBath from "../navbar/NavbarBath";
-import FormData from "./FormData"
+import FormData from "./FormData";
+import TablePrices from "./TablePrices";
 
 const BathForm = () => {
   return (
@@ -26,6 +27,9 @@ const BathForm = () => {
             <li>4. Vamos por él ó tu lo traes; dependiendo de los servicios que selecciones.</li>
             <li>5. ¡Tu peludito estará reluciente y feliz! 🐶</li>
           </ul>
+          <div className={styles.table_container}>
+            <TablePrices />
+          </div>
         </div>
         <div className={styles.right_container}>
           <FormData />

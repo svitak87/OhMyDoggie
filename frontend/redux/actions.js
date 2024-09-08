@@ -5,6 +5,9 @@ export const LOG_OUT_ADMIN = "LOG_OUT_ADMIN";
 export const UPDATE_APPOINTMENT = "UPDATE_APPOINTMENT";
 export const DELETE_APPOINTMENT = "DELETE_APPOINTMENT";
 export const FIND_BY_QUERY = "FIND_BY_QUERY";
+export const ORDER_BY_DATE = "ORDER_BY_DATE";
+export const ORDER_BY_HOUR = "ORDER_BY_HOUR";
+export const FILTER_BY_SERVICE = "FILTER_BY_SERVICE";
 
 import axios from "axios";
 
@@ -25,6 +28,23 @@ export const loginAdmin = (adminData) => {
 export const logOutAdmin = () => {
   return (dispatch) => {
     dispatch({ type: LOG_OUT_ADMIN });
+  };
+};
+
+export const orderByDate = (order) => {
+  return (dispatch) => {
+    dispatch({ type: ORDER_BY_DATE, payload: order });
+  };
+};
+export const orderByHour = (order) => {
+  return (dispatch) => {
+    dispatch({ type: ORDER_BY_HOUR, payload: order });
+  };
+};
+
+export const filterByService = (service) => {
+  return (dispatch) => {
+    dispatch({ type: FILTER_BY_SERVICE, payload: service });
   };
 };
 
@@ -50,7 +70,6 @@ export const createAppointment = (appointmentData) => {
         "http://localhost:3002/add-appointment",
         appointmentData
       );
-      console.log("estos son lod datos:" + response.data);
       dispatch({ type: CREATE_APPOINTMENT, payload: response.data });
     } catch (error) {
       if (error.message && error.response.status === 500) {
@@ -63,7 +82,6 @@ export const createAppointment = (appointmentData) => {
 export const updateAppointment = (appointmentData) => {
   return async (dispatch) => {
     try {
-      console.log(appointmentData)
       const response = await axios.put(
         "http://localhost:3002/update_appointment",
         appointmentData
@@ -78,24 +96,28 @@ export const updateAppointment = (appointmentData) => {
 export const deleteAppointment = (id) => {
   return async (dispatch) => {
     try {
-      const response = axios.delete(`http://localhost:3002/delete-appointment/${id}`)
+      const response = await axios.delete(
+        `http://localhost:3002/delete-appointment/${id}`
+      );
       dispatch({ type: DELETE_APPOINTMENT, payload: response.data });
     } catch (error) {
-      throw error
+      throw error;
     }
-  }
-}
+  };
+};
 
 export const getAppointmentByQuery = (value) => {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`http://localhost:3002/search-by-query?value=${value}`);
+      const response = await axios.get(
+        `http://localhost:3002/search-by-query?value=${value}`
+      );
 
       if (response.status !== 200) {
         throw new Error(`Unexpected status code: ${response.status}`);
       }
 
-      const appointment = response.data.appointment;
+      const appointment = response.data.appointments;
 
       if (!appointment) {
         throw new Error("No hay turnos con ese parámetro de búsqueda");

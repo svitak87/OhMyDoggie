@@ -38,7 +38,7 @@ module.exports = (sequelize) => {
       },
       dateTime: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       }
     },
     {

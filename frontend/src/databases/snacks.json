@@ -1,0 +1,46 @@
+[
+  {
+    "brand": "Churu",
+    "image": "/snacksLogos/Churu.png"
+  },
+  {
+    "brand": "Pixie",
+    "image": "/snacksLogos/Pixie.png"
+  },
+  {
+    "brand": "Three Pets",
+    "image": "/snacksLogos/Three Pets.png"
+  },
+  {
+    "brand": "Chunki",
+    "image": "/snacksLogos/Chunki.png"
+  },
+  {
+    "brand": "Evolve",
+    "image": "/snacksLogos/Evolve.png"
+  },
+  {
+    "brand": "Correas",
+    "image": "/snacksLogos/Correas.png"
+  },
+  {
+    "brand": "Brit",
+    "image": "/snacksLogos/Brit.png"
+  },
+  {
+    "brand": "Collares",
+    "image": "/snacksLogos/Collares.png"
+  },
+  {
+    "brand": "Cinturones",
+    "image": "/snacksLogos/Cinturones.png"
+  },
+  {
+    "brand": "Pelotas",
+    "image": "/snacksLogos/Pelotas.png"
+  },
+  {
+    "brand": "Juguetes",
+    "image": "/snacksLogos/Juguetes.png"
+  }
+]

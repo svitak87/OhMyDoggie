@@ -9,10 +9,7 @@ import { useDispatch } from "react-redux";
 
 const validationSchema = Yup.object({
   fullName: Yup.string()
-    .matches(
-      /^[a-zA-Z\s]+$/,
-      "El nombre completo solo puede contener letras y espacios"
-    )
+    .matches(/^[a-zA-Z\s]+$/, "El nombre completo solo puede contener letras y espacios")
     .required("El nombre es obligatorio"),
   email: Yup.string()
     .email("Debe ser un correo electrónico válido")
@@ -23,15 +20,29 @@ const validationSchema = Yup.object({
   services: Yup.object({
     transport: Yup.boolean(),
     grooming: Yup.boolean(),
+    other: Yup.boolean()
   }).test(
     "at-least-one-service",
     "Debes seleccionar al menos un servicio",
-    (value) => value.transport || value.grooming
+    (value) => value.transport || value.grooming || value.other
   ),
   petName: Yup.string().required("El nombre de la mascota es obligatorio"),
   message: Yup.string(),
-  dateTime: Yup.string().required("La fecha y hora son obligatorias"),
+  dateTime: Yup.string().test(
+    "required-if-service-selected",
+    "La fecha y hora son obligatorias",
+    function(value) {
+      const { services } = this.parent;
+      if (services.transport || services.grooming) {
+        return !!value; 
+      }
+      return true; 
+    }
+  )
 });
+
+
+
 
 const FormData = () => {
   const [showPopUp, setShowPopUp] = useState(false);
@@ -45,14 +56,14 @@ const FormData = () => {
         services: {
           transport: false,
           grooming: false,
+          other: false
         },
         petName: "",
         message: "",
-        dateTime: null,
+        dateTime: "",
       }}
       validationSchema={validationSchema}
       onSubmit={(values) => {
-        console.log("Formulario enviado:", values);
         setShowPopUp((prev) => !prev);
         window.scrollTo({
           top: 0,
@@ -102,7 +113,7 @@ const FormData = () => {
 
           <div className={styles.labels_container}>
             <label htmlFor="phoneNumber">
-              <h3>Número telefónico:</h3>
+              <h3>Teléfono / WhatsApp:</h3>
             </label>
             <Field
               type="text"
@@ -123,7 +134,7 @@ const FormData = () => {
               <label>
                 <h3>Fecha y hora:</h3>
               </label>
-              <DateSelection setFieldValue={setFieldValue} />
+              <DateSelection setFieldValue={setFieldValue} dateFieldName="dateTime"/>
               <ErrorMessage
                 name="dateTime"
                 component="div"
@@ -145,6 +156,10 @@ const FormData = () => {
               <div>
                 <Field type="checkbox" id="grooming" name="services.grooming" />
                 <label htmlFor="grooming">Baño y peluquería</label>
+              </div>
+              <div>
+                <Field type="checkbox" id="other" name="services.other" />
+                <label htmlFor="other">Otro</label>
                 <ErrorMessage
                   name="services"
                   component="div"
@@ -176,8 +191,9 @@ const FormData = () => {
             <label htmlFor="message">
               <h3>Mensaje:</h3>{" "}
               <i className={styles.info}>
-                *Info adicional que nos quieras dejar
+              *Si seleccionaste transporte u 'Otro', déjanos más info y tu dirección por favor. 
               </i>
+              <p>😊</p>
             </label>
             <Field
               as="textarea"

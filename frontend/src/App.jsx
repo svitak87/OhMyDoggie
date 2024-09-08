@@ -1,4 +1,3 @@
-// src/App.jsx
 import styles from "./App.module.css";
 import Navbar from "./components/navbar/Navbar";
 import Intro from "./components/intro/Intro";
@@ -13,7 +12,9 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 function App() {
-  const token = useSelector((state) => state.token);
+  const token = useSelector((state) => {
+    return state.token;
+  });
 
   return (
     <div className={styles.app}>

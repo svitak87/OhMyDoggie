@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import logo from "../../assets/logo_ohmydoggie.png";
 import Marcas from "../marcas/Marcas";
+import Snacks from "../snacks/Snacks";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
@@ -11,6 +12,7 @@ const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const [showSubmenu, setShowSubmenu] = useState(false);
   const [brands, setBrands] = useState(false);
+  const [snacks, setSnacks] = useState(false);
   const menuRef = useRef(null);
   const submenuRef = useRef(null);
 
@@ -27,6 +29,9 @@ const Navbar = () => {
 
   const handleBrands = () => {
     setBrands((prev) => !prev);
+  }
+  const handleSnacks = () => {
+    setSnacks((prev) => !prev);
   }
 
   const handleMenu = () => {
@@ -89,7 +94,7 @@ const Navbar = () => {
                       {showSubmenu && (
                         <ul className={styles.submenu_items}>
                           <li className={styles.submenu_item} onClick={handleBrands}>Alimento</li>
-                          <li className={styles.submenu_item}>Accesorios</li>
+                          <li className={styles.submenu_item} onClick={handleSnacks}>Snacks y accesorios</li>
                         </ul>
                       )}
                     </li>
@@ -109,7 +114,7 @@ const Navbar = () => {
                   {showSubmenu && (
                     <ul className={styles.submenu_items}>
                       <li className={styles.submenu_item} onClick={handleBrands}>Alimento</li>
-                      <li className={styles.submenu_item}>Accesorios</li>
+                      <li className={styles.submenu_item} onClick={handleSnacks}>Snacks y accesorios</li>
                     </ul>
                   )}
                 </li>
@@ -122,6 +127,7 @@ const Navbar = () => {
         </nav>
       </header>
       {brands && <Marcas />}
+      {snacks && <Snacks />}
     </>
   );
 };
