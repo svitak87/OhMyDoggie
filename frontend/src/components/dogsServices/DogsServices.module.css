@@ -1,14 +1,14 @@
 .container {
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
-    margin: 50px auto;
+    align-items: center; 
+    justify-content: center;
+    margin: 100px auto;
     width: 100%;
-    margin-top: 30px;
     padding: 5px;
-    max-height: 92vh;
-    overflow: auto;
-    z-index: 1;
+    max-height: 80vh;
+    overflow-y: auto;
+    z-index: 2;
 }
 
 /* Estilizando la barra de scroll */
@@ -55,9 +55,9 @@
 
 .overlay{
     background-color: var(--black-overlay);
+    margin: auto auto;
     position: fixed;
     width: 100%;
     min-height: 100vh;
     z-index: 1000;
 }
-  

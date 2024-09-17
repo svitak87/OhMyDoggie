@@ -29,7 +29,7 @@ const Footer = () => {
       {isMobile ? (
         <FooterMobile />
       ) : (
-        <div className={styles.footer_container}>
+        <footer className={styles.footer_container}>
           <div className={styles.logo_container}>
             <img src={logo} alt="logo oh my doggie" className={styles.logo} onClick={scrollingTop}/>
           </div>
@@ -63,7 +63,7 @@ const Footer = () => {
               className={styles.whatsappQR}
             />
           </div>
-        </div>
+        </footer>
       )}
       <div className={styles.rights_container}>
         <p>

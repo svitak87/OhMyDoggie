@@ -5,6 +5,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
 }
 
 .navbar_container {
@@ -42,6 +43,10 @@
     list-style-type: none;
 }
 
+.list_items{
+    color: var(--green-blue-color);
+}
+
 
 .list_container li:hover {
     background-color: rgba(var(--yellow-color-rgb));
@@ -74,6 +79,7 @@
 
 .link{
     text-decoration: none;
+    color: var(--green-blue-color);
 }
 
 .list_container li:hover::after {
@@ -114,6 +120,7 @@
         font-size: 2rem;
         cursor: pointer;
         color: var(--green-blue-color);
+        border: none;
     }
 
     .menu_items {

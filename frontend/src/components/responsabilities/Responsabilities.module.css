@@ -5,10 +5,7 @@
     background-color: var(--white-color);
     border: 7px solid var(--yellow-color);
     color: var(--green-blue-color);
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
+    border-radius: 15px;
 }
 
 .left_container,

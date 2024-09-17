@@ -45,6 +45,7 @@ const Appointment = ({
             <ul className={styles.list_container}>
               <li>Transporte: {services && services.transport ? "Sí" : "No"}</li>
               <li>Baño y peluquería: {services && services.grooming ? "Sí" : "No"}</li>
+              <li>Paseo-Recreación: {services && services.rideRecreation ? "Sí" : "No"}</li>
               <li>Otro: {services && services.other ? "Sí" : "No"}</li>
             </ul>
             <p>{dateTime}hrs</p>

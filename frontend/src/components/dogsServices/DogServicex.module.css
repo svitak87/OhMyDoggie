@@ -1,0 +1,35 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    border: 7px solid var(--yellow-color);
+    background-color: var(--white-color); 
+    padding: 15px;
+    border-radius: 15px;
+    width: 40%;
+    height: 250px;
+    margin: 10px 10px;  
+    text-align: start; 
+    color: var(--green-blue-color);
+}
+
+.title{
+    margin-bottom: 20px;
+}
+
+.description{
+    line-height: 1.5rem;
+}
+
+@media(min-width: 660px) and (max-width: 1024px){
+    .container{
+        width: 50%;
+        height: 300px;
+    }
+}
+@media(max-width: 660px){
+    .container{
+        width: 90%;
+        height: 310px;
+    }
+}

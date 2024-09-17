@@ -9,40 +9,41 @@ import { useDispatch } from "react-redux";
 
 const validationSchema = Yup.object({
   fullName: Yup.string()
-    .matches(/^[a-zA-Z\s]+$/, "El nombre completo solo puede contener letras y espacios")
+    .matches(
+      /^[a-zA-Z\s]+$/,
+      "El nombre completo solo puede contener letras y espacios"
+    )
     .required("El nombre es obligatorio"),
   email: Yup.string()
     .email("Debe ser un correo electrónico válido")
     .required("El correo electrónico es obligatorio"),
   phoneNumber: Yup.string()
-    .matches(/^[0-9]*$/, "El número de teléfono solo puede contener dígitos")
     .required("El número de teléfono es obligatorio"),
   services: Yup.object({
     transport: Yup.boolean(),
     grooming: Yup.boolean(),
-    other: Yup.boolean()
+    rideRecreation: Yup.boolean(),
+    other: Yup.boolean(),
   }).test(
     "at-least-one-service",
     "Debes seleccionar al menos un servicio",
-    (value) => value.transport || value.grooming || value.other
+    (value) =>
+      value.transport || value.grooming || value.rideRecreation || value.other
   ),
-  petName: Yup.string().required("El nombre de la mascota es obligatorio"),
+  petName: Yup.string().required("Queremos conocer el nombre de tu mascota"),
   message: Yup.string(),
   dateTime: Yup.string().test(
     "required-if-service-selected",
     "La fecha y hora son obligatorias",
-    function(value) {
+    function (value) {
       const { services } = this.parent;
-      if (services.transport || services.grooming) {
-        return !!value; 
+      if (services.transport || services.grooming || services.rideRecreation) {
+        return !!value;
       }
-      return true; 
+      return true;
     }
-  )
+  ),
 });
-
-
-
 
 const FormData = () => {
   const [showPopUp, setShowPopUp] = useState(false);
@@ -56,7 +57,8 @@ const FormData = () => {
         services: {
           transport: false,
           grooming: false,
-          other: false
+          rideRecreation: false,
+          other: false,
         },
         petName: "",
         message: "",
@@ -64,12 +66,12 @@ const FormData = () => {
       }}
       validationSchema={validationSchema}
       onSubmit={(values) => {
+        dispatch(createAppointment(values));
         setShowPopUp((prev) => !prev);
         window.scrollTo({
           top: 0,
           behavior: "smooth",
         });
-        dispatch(createAppointment(values));
       }}
     >
       {({ setFieldValue }) => (
@@ -114,6 +116,9 @@ const FormData = () => {
           <div className={styles.labels_container}>
             <label htmlFor="phoneNumber">
               <h3>Teléfono / WhatsApp:</h3>
+              <i className={styles.info}>
+                *Recuerda ingresar el indicativo internacional ej: Colombia +57
+              </i>
             </label>
             <Field
               type="text"
@@ -134,7 +139,10 @@ const FormData = () => {
               <label>
                 <h3>Fecha y hora:</h3>
               </label>
-              <DateSelection setFieldValue={setFieldValue} dateFieldName="dateTime"/>
+              <DateSelection
+                setFieldValue={setFieldValue}
+                dateFieldName="dateTime"
+              />
               <ErrorMessage
                 name="dateTime"
                 component="div"
@@ -156,6 +164,14 @@ const FormData = () => {
               <div>
                 <Field type="checkbox" id="grooming" name="services.grooming" />
                 <label htmlFor="grooming">Baño y peluquería</label>
+              </div>
+              <div>
+                <Field
+                  type="checkbox"
+                  id="rideRecreation"
+                  name="services.rideRecreation"
+                />
+                <label htmlFor="rideRecretion">Paseo y recreación</label>
               </div>
               <div>
                 <Field type="checkbox" id="other" name="services.other" />
@@ -191,7 +207,8 @@ const FormData = () => {
             <label htmlFor="message">
               <h3>Mensaje:</h3>{" "}
               <i className={styles.info}>
-              *Si seleccionaste transporte u 'Otro', déjanos más info y tu dirección por favor. 
+                *Si seleccionaste transporte u 'Otro', déjanos más info y tu
+                dirección por favor.
               </i>
               <p>😊</p>
             </label>

@@ -46,6 +46,7 @@ const OrderAppointments = () => {
           <option value="all">Todos</option>
           <option value="transport">Transporte</option>
           <option value="grooming">Baño y Peluquería</option>
+          <option value="rideRecreation">Paseo-recreación</option>
           <option value="transport&grooming">Transp&baño</option>
           <option value="other">Otro</option>
         </select>

@@ -34,7 +34,6 @@ const rootReducer = (state = initialState, { type, payload }) => {
       };
 
     case LOG_OUT_ADMIN:
-      console.log("Logging out");
       localStorage.removeItem("token");
       return {
         ...state,
@@ -48,7 +47,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       };
 
     case DELETE_APPOINTMENT:
-      // Eliminar la cita tanto de `appointments` (las filtradas) como de `allAppointments` (todas las citas).
+      // Eliminar la cita tanto de appointments (las filtradas) como de allAppointments (todas las citas).
       const updatedAllAppointments = state.allAppointments.filter(
         (appointment) => appointment.id !== payload
       );
@@ -119,6 +118,8 @@ const rootReducer = (state = initialState, { type, payload }) => {
               return appointment.services.transport;
             case "grooming":
               return appointment.services.grooming;
+            case "rideRecreation":
+              return appointment.services.rideRecreation
             case "transport&grooming":
               return (
                 appointment.services.grooming && appointment.services.transport

@@ -1,4 +1,4 @@
-.container {
+/* .container {
     display: flex;
     margin: 50px auto;
     width: 90%;
@@ -102,5 +102,45 @@
     .accesories,
     .cat {
         align-self: flex-end;
+    }
+} */
+
+.container{
+    margin: 50px auto;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 92%;
+}
+
+.images{
+    margin: 5px;
+}
+
+@media (max-width: 390px){
+    .images{
+        max-width: 370px;
+    }
+}
+@media (max-width: 375px){
+    .images{
+        max-width: 350px;
+    }
+}
+@media (max-width: 360px){
+    .images{
+        max-width: 350px;
+    }
+}
+@media (max-width: 344px){
+    .container{
+        width: 100%;
+        border: 1px solid white;
+    }
+    .images{
+        max-width: 344px;
+        border: 1px solid red;
     }
 }

@@ -6,6 +6,7 @@ import logo from "../../assets/logo_ohmydoggie.png";
 import Marcas from "../marcas/Marcas";
 import Snacks from "../snacks/Snacks";
 import { Link } from "react-router-dom";
+import DogsServices from "../dogsServices/DogsServices";
 
 const Navbar = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -13,6 +14,7 @@ const Navbar = () => {
   const [showSubmenu, setShowSubmenu] = useState(false);
   const [brands, setBrands] = useState(false);
   const [snacks, setSnacks] = useState(false);
+  const [services, setServices] = useState(false);
   const menuRef = useRef(null);
   const submenuRef = useRef(null);
 
@@ -32,6 +34,10 @@ const Navbar = () => {
   }
   const handleSnacks = () => {
     setSnacks((prev) => !prev);
+  }
+
+  const handleServices = () => {
+    setServices((prev) => !prev);
   }
 
   const handleMenu = () => {
@@ -90,11 +96,11 @@ const Navbar = () => {
                     </Link>
                     <li onClick={handleSubmenu} className={styles.list_items}>
                       Portafolio
-                      {/* Submenu */}
                       {showSubmenu && (
                         <ul className={styles.submenu_items}>
                           <li className={styles.submenu_item} onClick={handleBrands}>Alimento</li>
                           <li className={styles.submenu_item} onClick={handleSnacks}>Snacks y accesorios</li>
+                          <li className={styles.submenu_item} onClick={handleServices}>Servicios</li>
                         </ul>
                       )}
                     </li>
@@ -115,6 +121,7 @@ const Navbar = () => {
                     <ul className={styles.submenu_items}>
                       <li className={styles.submenu_item} onClick={handleBrands}>Alimento</li>
                       <li className={styles.submenu_item} onClick={handleSnacks}>Snacks y accesorios</li>
+                      <li className={styles.submenu_item} onClick={handleServices}>Servicios</li>
                     </ul>
                   )}
                 </li>
@@ -128,6 +135,7 @@ const Navbar = () => {
       </header>
       {brands && <Marcas />}
       {snacks && <Snacks />}
+      {services && <DogsServices />}
     </>
   );
 };

@@ -25,7 +25,7 @@ route.get("/all-appointments", async (req, res) => {
   }
 });
 
-// Crear turno
+// Crear turno en la base de datos
 route.post("/add-appointment", async (req, res) => {
   try {
     const {
@@ -73,6 +73,7 @@ route.put("/update_appointment", async (req, res) => {
   }
 });
 
+//eliminar turno de la base de datos
 route.delete("/delete-appointment/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -87,6 +88,7 @@ route.delete("/delete-appointment/:id", async (req, res) => {
   }
 });
 
+//buscar por palabra clave
 route.get("/search-by-query", async (req, res) => {
   try {
     const { value } = req.query;
@@ -97,7 +99,7 @@ route.get("/search-by-query", async (req, res) => {
       if (results) {
         res.status(200).json({ appointments: results }); 
       } else {
-        res.status(404).json({ error: "No appointment found with the provided data" }); // Mensaje de error más claro
+        res.status(404).json({ error: "No appointment found with the provided data" }); 
       }
     }
   } catch (error) {

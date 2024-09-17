@@ -17,7 +17,7 @@ const DateSelection = ({ setFieldValue, dateFieldName }) => {
 
       const max = isSaturday(selectedDate)
         ? new Date().setHours(15, 0, 0)
-        : new Date().setHours(18, 0, 0);
+        : new Date().setHours(17, 0, 0);
       setMaxTime(max);
     }
   }, [selectedDate]);

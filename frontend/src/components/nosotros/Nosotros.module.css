@@ -20,12 +20,15 @@
     font-size: 4rem;
     font-weight: bolder;
     margin-bottom: 30px;
-    color: var(--green-blue-color)
+    color: var(--green-blue-color);
+    text-align: center;
+    
 }
 
 .description {
     line-height: 1.8;
     font-size: 1.5rem;
+    text-align: center;
 }
 
 .image_container{
@@ -52,7 +55,6 @@
     .description{
         font-size: 1.2rem;
         line-height: 1.7rem;
-        text-align: start;
     }
 }
 
