@@ -1,12 +1,13 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, lazy, Suspense } from "react";
 import styles from "./Navbar.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import logo from "../../assets/logo_ohmydoggie.png";
-import Marcas from "../marcas/Marcas";
-import Snacks from "../snacks/Snacks";
 import { Link } from "react-router-dom";
-import DogsServices from "../dogsServices/DogsServices";
+
+const Marcas = lazy(() => import("../marcas/Marcas"));
+const Snacks = lazy(() => import("../snacks/Snacks"));
+const DogsServices = lazy(() => import("../dogsServices/DogsServices"))
 
 const Navbar = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -31,19 +32,19 @@ const Navbar = () => {
 
   const handleBrands = () => {
     setBrands((prev) => !prev);
-  }
+  };
   const handleSnacks = () => {
     setSnacks((prev) => !prev);
-  }
+  };
 
   const handleServices = () => {
     setServices((prev) => !prev);
-  }
+  };
 
   const handleMenu = () => {
     setOpenMenu((prev) => !prev);
   };
-  
+
   const handleClickOutside = (event) => {
     if (menuRef.current && !menuRef.current.contains(event.target)) {
       setOpenMenu(false);
@@ -98,9 +99,24 @@ const Navbar = () => {
                       Portafolio
                       {showSubmenu && (
                         <ul className={styles.submenu_items}>
-                          <li className={styles.submenu_item} onClick={handleBrands}>Alimento</li>
-                          <li className={styles.submenu_item} onClick={handleSnacks}>Snacks y accesorios</li>
-                          <li className={styles.submenu_item} onClick={handleServices}>Servicios</li>
+                          <li
+                            className={styles.submenu_item}
+                            onClick={handleBrands}
+                          >
+                            Alimento
+                          </li>
+                          <li
+                            className={styles.submenu_item}
+                            onClick={handleSnacks}
+                          >
+                            Snacks y accesorios
+                          </li>
+                          <li
+                            className={styles.submenu_item}
+                            onClick={handleServices}
+                          >
+                            Servicios
+                          </li>
                         </ul>
                       )}
                     </li>
@@ -111,17 +127,34 @@ const Navbar = () => {
           ) : (
             <div className={styles.right_navbar_container}>
               <ul className={styles.list_container}>
-                <li onClick={handleNosotros}>Nosotros</li>
+                <li onClick={handleNosotros} className={styles.test}>
+                  Nosotros
+                </li>
                 <Link to="/reserva" className={styles.link}>
                   <li>Agéndate</li>
                 </Link>
-                <li onClick={handleSubmenu}>
+                <li onClick={handleSubmenu} className={styles.test}>
                   Portafolio
                   {showSubmenu && (
                     <ul className={styles.submenu_items}>
-                      <li className={styles.submenu_item} onClick={handleBrands}>Alimento</li>
-                      <li className={styles.submenu_item} onClick={handleSnacks}>Snacks y accesorios</li>
-                      <li className={styles.submenu_item} onClick={handleServices}>Servicios</li>
+                      <li
+                        className={styles.submenu_item}
+                        onClick={handleBrands}
+                      >
+                        Alimento
+                      </li>
+                      <li
+                        className={styles.submenu_item}
+                        onClick={handleSnacks}
+                      >
+                        Snacks y accesorios
+                      </li>
+                      <li
+                        className={styles.submenu_item}
+                        onClick={handleServices}
+                      >
+                        Servicios
+                      </li>
                     </ul>
                   )}
                 </li>
@@ -133,9 +166,11 @@ const Navbar = () => {
           )}
         </nav>
       </header>
-      {brands && <Marcas />}
-      {snacks && <Snacks />}
-      {services && <DogsServices />}
+      <Suspense fallback={<div>Loading...</div>}>
+        {brands && <Marcas />}
+        {snacks && <Snacks />}
+        {services && <DogsServices />}
+      </Suspense>
     </>
   );
 };

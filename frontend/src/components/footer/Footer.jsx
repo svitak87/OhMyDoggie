@@ -21,9 +21,9 @@ const Footer = () => {
   const scrollingTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: "auto"
-    })
-  }
+      behavior: "auto",
+    });
+  };
   return (
     <>
       {isMobile ? (
@@ -31,7 +31,13 @@ const Footer = () => {
       ) : (
         <footer className={styles.footer_container}>
           <div className={styles.logo_container}>
-            <img src={logo} alt="logo oh my doggie" className={styles.logo} onClick={scrollingTop}/>
+            <img
+              src={logo}
+              alt="logo oh my doggie"
+              className={styles.logo}
+              onClick={scrollingTop}
+              loading="lazy"
+            />
           </div>
           <div className={styles.social_media_container}>
             <h2>Síguenos en</h2>
@@ -61,6 +67,7 @@ const Footer = () => {
               src={whatsappQR}
               alt="QR_whatsapp_ohmydoggie"
               className={styles.whatsappQR}
+              loading="lazy"
             />
           </div>
         </footer>
@@ -68,7 +75,10 @@ const Footer = () => {
       <div className={styles.rights_container}>
         <p>
           &copy; 2024 Oh My Doggie. Todos los derechos reservados. Desarrollado
-          por <a href="https://frontend-nu-henna.vercel.app/" target="_blanck">Svitak Dev</a>
+          por{" "}
+          <a href="https://frontend-nu-henna.vercel.app/" target="_blanck">
+            Svitak Dev
+          </a>
         </p>
       </div>
     </>

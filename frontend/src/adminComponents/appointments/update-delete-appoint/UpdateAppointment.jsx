@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import {
@@ -25,19 +25,18 @@ const UpdateAppointment = ({ email, setUpdateForm }) => {
   const dispatch = useDispatch();
 
   const handleClose = () => {
-    setUpdateForm((prev) => !prev)
-  }
+    setUpdateForm((prev) => !prev);
+  };
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
-    
+
     return () => {
       document.body.style.overflow = "auto";
     };
   }, []);
 
   const handleFormSubmit = async (values, { setSubmitting }) => {
-
     try {
       await dispatch(updateAppointment(values));
       dispatch(getAllAppointments());
@@ -129,7 +128,10 @@ const UpdateAppointment = ({ email, setUpdateForm }) => {
                   <label>
                     <h3>Fecha y hora:</h3>
                   </label>
-                  <DateSelection setFieldValue={setFieldValue} dateFieldName="newDateTime"/>
+                  <DateSelection
+                    setFieldValue={setFieldValue}
+                    dateFieldName="newDateTime"
+                  />
                   <ErrorMessage
                     name="newDateTime"
                     id="newDateTime"
@@ -138,20 +140,22 @@ const UpdateAppointment = ({ email, setUpdateForm }) => {
                   />
                 </div>
               </div>
-              <button
-                type="submit"
-                className={styles.button}
-                disabled={isSubmitting}
-              >
-                Enviar
-              </button>
-              <button
-                type="submit"
-                className={styles.button}
-                onClick={handleClose}
-              >
-                Cancelar
-              </button>
+              <div className={styles.buttons_container}>
+                <button
+                  type="submit"
+                  className={styles.button}
+                  disabled={isSubmitting}
+                >
+                  Enviar
+                </button>
+                <button
+                  type="submit"
+                  className={styles.button}
+                  onClick={handleClose}
+                >
+                  Cancelar
+                </button>
+              </div>
             </div>
           </div>
         </Form>

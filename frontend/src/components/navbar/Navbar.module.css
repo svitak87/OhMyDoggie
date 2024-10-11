@@ -43,8 +43,14 @@
     list-style-type: none;
 }
 
+.test{
+    width: 100px;
+}
+
 .list_items{
+    border: 1px solid yellow;
     color: var(--green-blue-color);
+   
 }
 
 

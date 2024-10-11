@@ -39,7 +39,7 @@ const SearchBar = () => {
             <div className={styles.left_container}>
               <Form className={styles.form}>
                 <div className={styles.label_input_button}>
-                  <label htmlFor="searchQuery">
+                  <label htmlFor="searchQuery" className={styles.text}>
                     Buscar por: email, número de teléfono, nombre o fecha:
                   </label>
                   <Field

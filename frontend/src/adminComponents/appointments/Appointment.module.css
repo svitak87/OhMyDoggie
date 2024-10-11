@@ -4,8 +4,8 @@
     background-color: var(--white-color);
     padding: 10px;
     border-radius: 15px;
-    width: 30%;
-    margin: 5px 10px;   
+    width: 100%;
+    margin: 10px;
 }
 
 .left_container{
@@ -45,9 +45,15 @@
     list-style: none;
 }
 
-@media(min-width: 200px) and (max-width: 660px){
+@media(min-width: 768px){
     .container{
-        width: 95%;
-    }
+        width: 45%;
+    };
+}
+
+@media(min-width: 1024px){
+    .container{
+        width: 30%;
+    };
 }
 

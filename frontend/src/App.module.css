@@ -18,6 +18,7 @@
 body {
   font-family: var(--font-family-montserrat);
   background-color: var(--green-blue-color);
+  overflow-x: hidden; /* Esto evitará el scroll horizontal */
 }
 
 .app{

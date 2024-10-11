@@ -1,0 +1,55 @@
+.container {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: space-between; */
+    align-items: center;
+    margin: 20px auto;
+    width: 90%;
+    gap: 10px;
+  }
+  
+  li {
+    list-style-type: none;
+    width: 100%; /* O ajusta el tamaño según el diseño */
+    position: relative; /* Para que el atributo se posicione relativo a este */
+  }
+  
+  .animal {
+    width: 100%;
+    border-radius: 15px;
+  }
+  
+  .atribute {
+    position: absolute;
+    color: var(--yellow-color);
+    bottom: 25px; /* Ajusta según la imagen */
+    left: 25px; /* Ajusta según la imagen */
+    font-size: 3rem; /* Ajusta el tamaño para mobile first */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Añade sombra para mejorar visibilidad */
+  }
+  
+
+@media (min-width: 768px){
+    .container{
+        flex-wrap: nowrap;
+    }
+    .animal{
+        max-width: 250px;   
+    }
+    .atribute{
+        font-size: 1.5rem;
+    }
+}
+@media (min-width: 1024px){
+    .container{
+        flex-wrap: nowrap;
+        gap: 60px;
+    }
+    .animal{
+        max-width: 350px;
+    }
+    .atribute{
+        font-size: 2rem;
+    }
+}

@@ -8,6 +8,7 @@ const {
   deleteAppointment,
   getAppointmentByQuery,
 } = require("../controllers/appointmentController");
+const {sendContactEmail, confirmationEmail} = require("../gmailConfig/gmailConfig")
 
 //traer todos los turnos de la base de datos
 route.get("/all-appointments", async (req, res) => {
@@ -46,6 +47,18 @@ route.post("/add-appointment", async (req, res) => {
       message,
       dateTime,
     });
+    await sendContactEmail({fullName,
+      email,
+      phoneNumber,
+      services,
+      petName,
+      message,
+      dateTime});
+    await confirmationEmail({fullName,
+      email,
+      services,
+      petName,
+      dateTime})
     res.status(201).json({ message: "Turno agendado con éxito" });
   } catch (error) {
     res.status(500).json({ error: error.message });

@@ -1,26 +1,29 @@
-.container{
-    border: 1px solid yellow;
-}
-
-.left_container{
-    border: 1px solid white;
-    width: 55%;
+.form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--white-color);
     padding: 10px;
 }
 
-.form{
-    display: flex;
-    color: var(--white-color);
-}
-
 .input{
-    margin-left: 10px;
+    margin: 20px auto;
     border-radius: 5px;
-    padding: 3px;
+    padding: 5px;
+    width: 90%;
 }
 
 .label_input_button{
-    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.text{
+    text-align: center;
+    font-size: 1.2rem;
 }
 
 .button {

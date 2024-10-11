@@ -19,6 +19,10 @@ const Appointment = ({
 
   const handleClickUpdate = () => {
     setUpdateForm((prev) => !prev);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   const handleDelete = async () => {

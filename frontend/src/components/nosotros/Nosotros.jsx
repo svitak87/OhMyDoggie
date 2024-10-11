@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from "react";
 import nosotrosImage from "../../assets/nosotros_image.png";
 import styles from "./Nosotros.module.css";
 

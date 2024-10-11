@@ -8,7 +8,7 @@ const FooterMobile = () => {
     <>
       <div className={styles.footer_container}>
         <div className={styles.logo_container}>
-          <img src={logo} alt="logo oh my doggie" className={styles.logo} />
+          <img src={logo} alt="logo oh my doggie" className={styles.logo} loading="lazy"/>
         </div>
         <div className={styles.contact_container}>
           <div className={styles.contact}>
@@ -22,6 +22,7 @@ const FooterMobile = () => {
               src={whatsappQR}
               alt="QR_whatsapp_ohmydoggie"
               className={styles.whatsappQR}
+              loading="lazy"
             />
           </div>
         </div>

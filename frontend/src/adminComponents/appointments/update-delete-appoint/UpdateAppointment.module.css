@@ -6,7 +6,7 @@
     width: 100vw;
     min-height: 113vh;
     z-index: 999;
-    padding: 20px;
+    overflow: hidden;
 }
 
 
@@ -16,7 +16,7 @@
     display: flex;
     flex-direction: column;
     margin: 50px auto;
-    width: 50%;
+    width: 95%;
     padding: 20px;
     border-radius: 15px;
 }
@@ -37,7 +37,7 @@
 }
 
 .services_container{
-    width: 50%;
+    width: 10%;
 }
 .dateService_container{
     width: 50%;
@@ -80,6 +80,13 @@ h3 {
     border-radius: 5px;
 }
 
+.buttons_container{
+    border: 1px solid red;
+    display: flex;
+    width: 100%;
+    margin: 20px auto;
+}
+
 .button {
     width: 100px;
     margin: 20px auto;
@@ -94,4 +101,13 @@ h3 {
 .button:hover {
     background-color: var(--green-blue-color);
     color: var(--white-color);
+}
+
+@media (min-width: 1024px){
+    .overlay{
+        min-height: 200vh;
+    }
+    .container{
+        width: 50%;
+    }
 }

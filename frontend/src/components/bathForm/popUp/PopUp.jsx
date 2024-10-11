@@ -21,6 +21,7 @@ const PopUp = () => {
     <div className={styles.overlay}>
       <div className={styles.container}>
         <h2>¡Tu turno ha sido agendado!</h2>
+        <p>¡No olvides revisar tu casilla de spam!</p>
         <button className={styles.button} onClick={handleClick}>
           OK!
         </button>

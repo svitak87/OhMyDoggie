@@ -17,6 +17,7 @@ const Intro = () => {
             src={ohMyDoggie}
             alt="Logotipo de OH MY DOGGIE"
             className={styles.ohMyDoggie}
+            loading="lazy"
           />
         </h1>
       </header>
@@ -26,6 +27,7 @@ const Intro = () => {
           src={black_dog}
           alt="Perro negro feliz con accesorio OH MY DOGGIE"
           className={styles.dog}
+          loading="lazy"
         />
       </figure>
     </section>
@@ -34,11 +36,3 @@ const Intro = () => {
 
 export default Intro;
 
-
-
-  {/* <p className={styles.welcomeMessage}>
-    🐾 Todo para tu mascota, con amor y cuidado. Tienda de mascotas
-    con productos únicos. 🛒 🛁 Servicio de baño y spa para consentirlos. 🐶
-    🚚 Transporte seguro hasta tu puerta. 🚪<br /> 🌟Cuidamos de ellos, como
-    parte de nuestra familia.
-  </p> */}

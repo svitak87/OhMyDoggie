@@ -1,15 +1,24 @@
 .container{
-    border: 1px solid white;
     display: flex;
     width: 90%;
     flex-wrap: wrap;
-    justify-content: flex-start;
-    margin: 100px auto;
-    padding-left: 20px;
+    margin: 50px auto;
 }
 
-@media(min-width: 200px) and (max-width: 660px){
+@media(min-width: 768px){
     .container{
-        padding-left: 0;
+        width: 95%;
+        justify-content: space-around;
     }
 }
+
+@media(min-width: 1024px){
+    .container{
+        width: 95%;
+        justify-content: flex-start;
+        padding-left: 40px;
+    }
+}
+
+
+

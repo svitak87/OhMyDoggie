@@ -16,6 +16,10 @@
     position: relative; 
 }
 
+.logo{
+    max-width: 250px;
+}
+
 .logo:hover{
     cursor: pointer;
 }

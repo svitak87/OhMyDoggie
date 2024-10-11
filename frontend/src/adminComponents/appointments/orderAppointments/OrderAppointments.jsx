@@ -5,6 +5,7 @@ import {
   filterByService,
 } from "../../../../redux/actions";
 import { useDispatch } from "react-redux";
+import styles from "./OrderAppointments.module.css"
 
 const OrderAppointments = () => {
   const dispatch = useDispatch();
@@ -22,25 +23,25 @@ const OrderAppointments = () => {
   };
 
   return (
-    <div>
-      <div>
-        <label>Ordenar por día</label>
+    <div className={styles.container}>
+      <div className={styles.filter_container}>
+        <label className={styles.label}>Ordenar por día</label>
         <select onChange={orderDate}>
           <option value=""></option>
           <option value="ascending">Ascendente</option>
           <option value="descending">Descendente</option>
         </select>
       </div>
-      <div>
-        <label>Ordenar por hora</label>
+      <div className={styles.filter_container}>
+        <label className={styles.label}>Ordenar por hora</label>
         <select onChange={orderHour}>
           <option value=""></option>
           <option value="ascending">Ascendente</option>
           <option value="descending">Descendente</option>
         </select>
       </div>
-      <div>
-        <label>Filtrar por servicio</label>
+      <div className={styles.filter_container}>
+        <label className={styles.label}>Filtrar por servicio</label>
         <select onChange={filterService}>
           <option value=""></option>
           <option value="all">Todos</option>
