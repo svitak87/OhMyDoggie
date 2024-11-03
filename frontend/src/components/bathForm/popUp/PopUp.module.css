@@ -42,12 +42,19 @@
     color: var(--white-color);
 }
 
-
-
-@media(min-width: 200px) and (max-width: 660px){
-    
+@media(min-width: 768px){
     .container{
-        width: 80%;
+        width: 60%;
+    }
+}
+
+@media(min-width: 200px) and (max-width: 660px){   
+    .container{
+        width: 90%;
+    }
+    p {
+        text-align: center;
+        margin-top: 20px;
     }
 }
   

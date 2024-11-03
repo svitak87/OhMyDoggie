@@ -8,6 +8,8 @@ export const FIND_BY_QUERY = "FIND_BY_QUERY";
 export const ORDER_BY_DATE = "ORDER_BY_DATE";
 export const ORDER_BY_HOUR = "ORDER_BY_HOUR";
 export const FILTER_BY_SERVICE = "FILTER_BY_SERVICE";
+export const ASSIGN_APPOINTMENT = "ASSIGN_APPOINTMENT";
+export const FILTER_BY_COLABORATOR = "FILTER_BY_COLABORATOR";
 
 import axios from "axios";
 
@@ -48,12 +50,19 @@ export const filterByService = (service) => {
   };
 };
 
+export const filterByColaborator = (colaborator) => {
+  return (dispatch) => {
+    dispatch({type: FILTER_BY_COLABORATOR, payload: colaborator})
+  }
+}
+
 export const getAllAppointments = () => {
   return async (dispatch) => {
     try {
       const response = await axios.get(
         "http://localhost:3002/all-appointments"
       );
+      
       dispatch({ type: GET_ALL_APPOINTMENTS, payload: response.data });
     } catch (error) {
       if (error.message && error.response.status === 500) {
@@ -93,6 +102,20 @@ export const updateAppointment = (appointmentData) => {
   };
 };
 
+export const assignAppointment = (colaborator, id) => {
+  return async (dispatch) => {
+    try {
+      const data = { colaborator, id };
+      const response = await axios.put("http://localhost:3002/assign-colaborator", data);
+
+      dispatch({ type: ASSIGN_APPOINTMENT, payload: response.data });
+    } catch (error) {
+      console.error("Error assigning appointment:", error);
+      throw error;
+    }
+  }
+}
+
 export const deleteAppointment = (id) => {
   return async (dispatch) => {
     try {
@@ -105,6 +128,7 @@ export const deleteAppointment = (id) => {
     }
   };
 };
+
 
 export const getAppointmentByQuery = (value) => {
   return async (dispatch) => {

@@ -20,10 +20,6 @@ const SearchBar = () => {
       resetForm();
     } catch (error) {
       setErrorQuery("No hay datos con ese parámetro.");
-      // setTimeout(() => {
-      //   resetForm();
-      //   setErrorQuery("");
-      // }, 4000);
     }
   };
 

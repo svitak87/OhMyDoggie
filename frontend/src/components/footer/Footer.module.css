@@ -126,3 +126,9 @@
     text-decoration: none;
     color: var(--white-color);
 }
+
+@media(min-width:200px) and (max-width: 690px){
+    .rights_container p{
+        margin-bottom: 20px;
+    }
+}

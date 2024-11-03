@@ -6,32 +6,39 @@ import { isSunday, isSaturday, format } from "date-fns";
 
 const DateSelection = ({ setFieldValue, dateFieldName }) => {
   const [selectedDate, setSelectedDate] = useState(null);
-  const [minTime, setMinTime] = useState(new Date());
-  const [maxTime, setMaxTime] = useState(new Date());
+  const [selectedTime, setSelectedTime] = useState(null);  
+  const [minTime, setMinTime] = useState(null);
+  const [maxTime, setMaxTime] = useState(null);
 
   useEffect(() => {
     if (selectedDate) {
-      const min = new Date();
-      min.setHours(9, 0, 0);
+      const min = new Date(selectedDate);
+      min.setHours(9, 0, 0);  // Hora mínima a las 9:00 AM
       setMinTime(min);
 
       const max = isSaturday(selectedDate)
-        ? new Date().setHours(15, 0, 0)
-        : new Date().setHours(17, 0, 0);
+        ? new Date(selectedDate).setHours(15, 0, 0)  // Sábados hasta las 3:00 PM
+        : new Date(selectedDate).setHours(17, 0, 0);  // Otros días hasta las 5:00 PM
       setMaxTime(max);
     }
   }, [selectedDate]);
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
-    if (date) {
-      const formattedDate = format(date, 'dd/MM/yyyy HH:mm');
-      setFieldValue(dateFieldName, formattedDate); // Usar la prop dateFieldName para determinar el campo
+    setSelectedTime(null);  
+  };
+
+  const handleTimeChange = (time) => {
+    setSelectedTime(time);
+    if (time) {
+      const formattedDate = format(new Date(selectedDate.setHours(time.getHours(), time.getMinutes())), 'dd/MM/yyyy HH:mm');
+      setFieldValue(dateFieldName, formattedDate);  // Solo asigna si se ha seleccionado una hora
+    } else {
+      setFieldValue(dateFieldName, "");  // Resetea el valor si no hay hora seleccionada
     }
   };
 
-  const isSundayDay = (date) => isSunday(date);
-  const filterWeekends = (date) => !isSundayDay(date);
+  const filterWeekends = (date) => !isSunday(date);
 
   const today = new Date();
 
@@ -41,16 +48,28 @@ const DateSelection = ({ setFieldValue, dateFieldName }) => {
         className={styles.datePicker}
         selected={selectedDate}
         onChange={handleDateChange}
-        showTimeSelect
-        timeFormat="HH:mm"
-        dateFormat="dd/MM/yyyy HH:mm"
-        timeIntervals={60}
+        placeholderText="Selecciona una fecha"
         filterDate={filterWeekends}
-        placeholderText="Selecciona una fecha y hora"
-        minTime={minTime}
-        maxTime={maxTime}
         minDate={today}
+        showTimeSelect={false}  // Solo permite la selección de la fecha aquí
+        dateFormat="dd/MM/yyyy"
       />
+      
+      {selectedDate && (
+        <DatePicker
+          className={styles.timePicker}
+          selected={selectedTime}
+          onChange={handleTimeChange}
+          showTimeSelect
+          showTimeSelectOnly
+          timeIntervals={60}
+          timeFormat="HH:mm"
+          dateFormat="HH:mm"
+          placeholderText="Selecciona una hora"
+          minTime={minTime}
+          maxTime={maxTime}
+        />
+      )}
     </div>
   );
 };

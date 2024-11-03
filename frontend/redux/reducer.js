@@ -8,6 +8,8 @@ import {
   ORDER_BY_DATE,
   ORDER_BY_HOUR,
   FILTER_BY_SERVICE,
+  ASSIGN_APPOINTMENT,
+  FILTER_BY_COLABORATOR,
 } from "./actions";
 
 const initialState = {
@@ -15,6 +17,7 @@ const initialState = {
   allAppointments: [],
   admin: {},
   token: localStorage.getItem("token"),
+  colaboratorsAppointments: [],
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -23,7 +26,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         appointments: payload,
-        allAppointments: payload, 
+        allAppointments: payload,
       };
 
     case LOGIN_ADMIN:
@@ -60,7 +63,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         allAppointments: updatedAllAppointments,
-        appointments: updatedFilteredAppointments, // Actualizamos las citas filtradas
+        appointments: updatedFilteredAppointments, 
       };
 
     case ORDER_BY_DATE:
@@ -119,7 +122,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
             case "grooming":
               return appointment.services.grooming;
             case "rideRecreation":
-              return appointment.services.rideRecreation
+              return appointment.services.rideRecreation;
             case "transport&grooming":
               return (
                 appointment.services.grooming && appointment.services.transport
@@ -141,6 +144,32 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         appointments: payload,
+      };
+      case ASSIGN_APPOINTMENT:
+        const { id, colaborator } = payload;
+
+        const updatedAppointments = state.appointments.map((appointment) =>
+          appointment.id === id
+        ? { ...appointment, assignTo: colaborator }
+        : appointment
+      );
+        const updatedAll = state.allAppointments.map((appointment) =>
+          appointment.id === id
+            ? { ...appointment, assignTo: colaborator }
+            : appointment
+        );
+        return {
+          ...state,
+          appointments: updatedAppointments,
+          allAppointments: updatedAll // Asegúrate de que `allAppointments` también se actualice
+        };
+      
+
+    case FILTER_BY_COLABORATOR:
+      const filteredAppointments = state.allAppointments.filter((appointment) => appointment.assignTo === payload)
+      return {
+        ...state,
+        appointments: filteredAppointments
       };
 
     default:

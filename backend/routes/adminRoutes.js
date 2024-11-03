@@ -3,6 +3,8 @@ const route = express.Router();
 const { addAdmin, loginAdmin } = require("../controllers/adminControllers");
 const { generateToken } = require("../utils/jwtAuthPayload");
 
+
+//crear un administrador
 route.post("/add-admin", async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -17,6 +19,7 @@ route.post("/add-admin", async (req, res) => {
   }
 });
 
+//logueo de administrador
 route.post("/login-admin", async (req, res) => {
   try {
     const { email, password } = req.body;

@@ -27,5 +27,5 @@ module.exports = (sequelize) => {
     }
   );
 
-  return Admin; // Asegúrate de devolver el modelo
+  return Admin; 
 };

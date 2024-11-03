@@ -1,6 +1,5 @@
 const { Op } = require("sequelize");
 const { Appointment } = require("../database");
-const appointment = require("../models/appointment");
 
 
 //crear turno
@@ -13,7 +12,7 @@ const addAppointment = async (appointmentData) => {
     !phoneNumber ||
     !services ||
     !petName ||
-    !message
+    !message 
   ) {
     throw new Error("Los datos obligatorios deben ser proporcionados");
   }
@@ -27,13 +26,12 @@ const addAppointment = async (appointmentData) => {
   return appointmentCreated;
 };
 
-
+//traer todos los turnos
 const getAllAppointments = async () => {
   try {
     const allAppointments = await Appointment.findAll({
-      attributes: ["fullName", "email", "phoneNumber", "services", "dateTime", "id"],
+      attributes: ["fullName", "email", "phoneNumber", "services", "dateTime", "id", "assignTo"],
     });
-
     if (allAppointments.length > 0) {
       return allAppointments
     } else {
@@ -44,6 +42,30 @@ const getAllAppointments = async () => {
   }
 };
 
+//asignar turno a un colborador
+const assignColaborator = async (data) => {
+  const { colaborator, id } = data;
+  try {
+    if (!id) {
+      throw new Error("id is required");
+    } else {
+      const appointmentFound = await Appointment.findOne({
+        where: { id: id },
+      });
+      if (appointmentFound) {
+        await Appointment.update(
+          { assignTo: colaborator },
+          { where: { id: id } }  
+        );
+      }
+    }
+  } catch (error) {
+    console.error('Error in updateAppointment:', error);
+    throw error;
+  }
+};
+
+//actualizar el turno
 const updateAppointment = async (appointmentData) => {
   try {
     const { email, newEmail, newPhoneNumber, newDateTime } = appointmentData;
@@ -136,6 +158,7 @@ const getAppointmentByQuery = async (appointmentData) => {
         phoneNumber: appointment.phoneNumber,
         services: appointment.services,
         dateTime: appointment.dateTime,
+        assignTo: appointment.assignTo
       }));
 
       return appointments;  
@@ -148,45 +171,11 @@ const getAppointmentByQuery = async (appointmentData) => {
 };
 
 
-
-const verifyAppointment = async (date) => {
-  try {
-    // Asegúrate de que la fecha sea válida
-    if (!date || isNaN(Date.parse(date))) {
-      throw new Error("Fecha inválida");
-    }
-
-    // Convertir la fecha ISO a la zona horaria correcta
-    const appointmentDate = new Date(date);
-    const startOfDay = new Date(appointmentDate.setUTCHours(0, 0, 0, 0));
-    const endOfDay = new Date(appointmentDate.setUTCHours(23, 59, 59, 999));
-
-    const appointments = await Appointment.findAll({
-      where: {
-        dateTime: {
-          [Op.between]: [startOfDay, endOfDay],
-        },
-      },
-    });
-    const occupiedTimes = appointments.map((app) => {
-      // Formatear la fecha según el formato de la base de datos
-      return new Date(app.dateTime).toLocaleTimeString("en-GB", {
-        hour: "2-digit",
-        minute: "2-digit",
-      });
-    });
-
-    return occupiedTimes;
-  } catch (error) {
-    throw new Error(`Error al verificar la disponibilidad: ${error.message}`);
-  }
-};
-
 module.exports = {
   addAppointment,
-  verifyAppointment,
   getAllAppointments,
   updateAppointment,
   deleteAppointment,
-  getAppointmentByQuery
+  getAppointmentByQuery,
+  assignColaborator 
 };

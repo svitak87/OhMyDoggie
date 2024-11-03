@@ -30,6 +30,7 @@ const Appointments = () => {
               phoneNumber={appointment.phoneNumber}
               services={appointment.services}
               dateTime={appointment.dateTime}
+              assignTo={appointment.assignTo}
             />
           ))
         ) : (

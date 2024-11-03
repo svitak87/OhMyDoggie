@@ -53,7 +53,7 @@
         width: 95%
     }
     .description{
-        font-size: 1.2rem;
+        font-size: 1rem;
         line-height: 1.7rem;
     }
 }
@@ -64,9 +64,9 @@
     }
 
     .description{
-        font-size: 1.2rem;
+        font-size: 1rem;
         line-height: 1.7rem;
-        text-align: start;
+        text-align: center;
     }
 
     .title {

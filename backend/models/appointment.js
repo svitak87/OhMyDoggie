@@ -39,7 +39,11 @@ module.exports = (sequelize) => {
       dateTime: {
         type: DataTypes.STRING,
         allowNull: true,
-      }
+      },
+      assignTo: {
+        type: DataTypes.STRING,
+        allowNull: true
+      } 
     },
     {
       timestamps: false,

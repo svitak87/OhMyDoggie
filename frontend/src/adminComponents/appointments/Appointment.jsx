@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSync, faTrash } from "@fortawesome/free-solid-svg-icons";
-import { deleteAppointment, getAllAppointments } from "../../../redux/actions";
+import { faSync, faTrash, faUserCheck } from "@fortawesome/free-solid-svg-icons"; // Importa el ícono de asignación
+import { deleteAppointment } from "../../../redux/actions";
+import AssignAppointment from "./assignAppointment/AssignAppointment";
 import styles from "./Appointment.module.css";
 import UpdateAppointment from "./update-delete-appoint/UpdateAppointment";
 import { useDispatch } from "react-redux";
@@ -13,9 +14,15 @@ const Appointment = ({
   phoneNumber,
   services,
   dateTime,
+  assignTo
 }) => {
   const [updateForm, setUpdateForm] = useState(false);
+  const [assignChart, setAssignChart] = useState(false);
   const dispatch = useDispatch();
+
+  const assignHandler = () => {
+    setAssignChart((prev) => !prev);
+  };
 
   const handleClickUpdate = () => {
     setUpdateForm((prev) => !prev);
@@ -28,13 +35,10 @@ const Appointment = ({
   const handleDelete = async () => {
     try {
       await dispatch(deleteAppointment(id));
-      await dispatch(getAllAppointments());
     } catch (error) {
       console.error("Error al eliminar la cita:", error);
     }
   };
-  
-  
 
   return (
     <>
@@ -53,15 +57,22 @@ const Appointment = ({
               <li>Otro: {services && services.other ? "Sí" : "No"}</li>
             </ul>
             <p>{dateTime}hrs</p>
+            <h2>{assignTo}</h2>
           </div>
 
           <div className={styles.right_container}>
             <button className={styles.iconButton} onClick={handleClickUpdate} title="Actualizar">
-              <FontAwesomeIcon icon={faSync} /> {/* Icono de actualizar */}
+              <FontAwesomeIcon icon={faSync} />
             </button>
             <button className={styles.iconButton} onClick={handleDelete} title="Eliminar">
-              <FontAwesomeIcon icon={faTrash} /> {/* Icono de eliminar */}
+              <FontAwesomeIcon icon={faTrash} />
             </button>
+            <button className={styles.iconButton} onClick={assignHandler} title="Asignar">
+              <FontAwesomeIcon icon={faUserCheck} /> 
+            </button>
+            <div>
+              {assignChart && <AssignAppointment id={id} />}
+            </div>
           </div>
         </div>
       )}

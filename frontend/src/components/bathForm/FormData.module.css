@@ -54,6 +54,10 @@ h3 {
     min-height: 1em;
 }
 
+.iconFace{
+    margin-bottom: 20px;
+}
+
 .textArea {
     background-color: var(--white-color);
     border: 2px solid var(--green-blue-color);
@@ -106,5 +110,8 @@ h3 {
     }
     .dateService_container{
         width: 100%;
+    }
+    .iconFace{
+        text-align: left;
     }
 }

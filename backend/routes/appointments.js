@@ -2,13 +2,16 @@ const express = require("express");
 const route = express.Router();
 const {
   addAppointment,
-  verifyAppointment,
   getAllAppointments,
   updateAppointment,
   deleteAppointment,
   getAppointmentByQuery,
+  assignColaborator
 } = require("../controllers/appointmentController");
-const {sendContactEmail, confirmationEmail} = require("../gmailConfig/gmailConfig")
+const {
+  sendContactEmail,
+  confirmationEmail,
+} = require("../gmailConfig/gmailConfig");
 
 //traer todos los turnos de la base de datos
 route.get("/all-appointments", async (req, res) => {
@@ -26,6 +29,17 @@ route.get("/all-appointments", async (req, res) => {
   }
 });
 
+//asignar turno a un colabordor
+route.put("/assign-colaborator", async (req, res) => {
+  try {
+    const { id, colaborator } = req.body;
+    await assignColaborator({colaborator, id});
+    res.status(201).json({ colaborator: colaborator, id: id });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // Crear turno en la base de datos
 route.post("/add-appointment", async (req, res) => {
   try {
@@ -37,6 +51,7 @@ route.post("/add-appointment", async (req, res) => {
       petName,
       message,
       dateTime,
+      assignTo = null,
     } = req.body;
     await addAppointment({
       fullName,
@@ -46,19 +61,18 @@ route.post("/add-appointment", async (req, res) => {
       petName,
       message,
       dateTime,
+      assignTo,
     });
-    await sendContactEmail({fullName,
+    await sendContactEmail({
+      fullName,
       email,
       phoneNumber,
       services,
       petName,
       message,
-      dateTime});
-    await confirmationEmail({fullName,
-      email,
-      services,
-      petName,
-      dateTime})
+      dateTime,
+    });
+    await confirmationEmail({ fullName, email, services, petName, dateTime });
     res.status(201).json({ message: "Turno agendado con éxito" });
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -110,9 +124,11 @@ route.get("/search-by-query", async (req, res) => {
     } else {
       const results = await getAppointmentByQuery(value);
       if (results) {
-        res.status(200).json({ appointments: results }); 
+        res.status(200).json({ appointments: results });
       } else {
-        res.status(404).json({ error: "No appointment found with the provided data" }); 
+        res
+          .status(404)
+          .json({ error: "No appointment found with the provided data" });
       }
     }
   } catch (error) {
@@ -121,18 +137,5 @@ route.get("/search-by-query", async (req, res) => {
 });
 
 
-
-// Verificar turno
-route.get("/verify-appointment", async (req, res) => {
-  try {
-    const { date } = req.query;
-    console.log("Received date:", date); // Agregar este log para depurar
-    const occupiedTimes = await verifyAppointment(date);
-    res.status(200).json({ occupiedTimes });
-  } catch (error) {
-    console.error("Error en la ruta:", error); // Agregar este log para depurar
-    res.status(500).json({ error: error.message });
-  }
-});
 
 module.exports = route;
