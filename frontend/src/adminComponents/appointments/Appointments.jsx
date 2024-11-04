@@ -34,7 +34,7 @@ const Appointments = () => {
             />
           ))
         ) : (
-          <h2>No hay turnos OH MY DOGGGIE</h2>
+          <h2 className={styles.noAppointments}>No hay turnos OH MY DOGGGIE</h2>
         )}
       </div>
     </>

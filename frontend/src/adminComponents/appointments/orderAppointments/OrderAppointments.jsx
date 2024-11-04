@@ -55,7 +55,7 @@ const OrderAppointments = () => {
     const value = event.target.value;
     setColaboratorFilter(value);
     dispatch(filterByColaborator(value));
-    // Limpia los otros filtros
+    // Limpia los otros filtros 
     setDateOrder("");
     setHourOrder("");
     setServiceFilter("");

@@ -8,14 +8,16 @@
 </head>
 
 <body style="font-family: 'Montserrat', sans-serif; background-color: #f4f4f4; padding: 20px; text-align: center;">
-    <div class="container" style="background-color: rgb(255, 255, 255); border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border: 7px solid rgb(255, 200, 69); padding: 10px;">
+    <div class="container"
+        style="background-color: rgb(255, 255, 255); border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border: 7px solid rgb(255, 200, 69); padding: 10px;">
         <div class="header_title" style="background-color: rgb(0, 147, 178); padding: 20px;">
             <h1 style="color: rgb(255, 255, 255);">¡Turno confirmado para {{petName}}!</h1>
         </div>
-        
+
         <p style="color: rgb(0, 147, 178);">Hola <span>{{fullName}}</span>,</p>
         <p style="color: rgb(0, 147, 178);">Gracias por agendarte. Aquí están los detalles de tu turno:</p>
-        <table style="width: 100%; margin: 20px 0; text-align: left; border-collapse: collapse; color: rgb(0, 147, 178);">
+        <table
+            style="width: 100%; margin: 20px 0; text-align: left; border-collapse: collapse; color: rgb(0, 147, 178);">
             <tr>
                 <th style="padding: 10px; border-bottom: 1px solid rgb(255, 200, 69);">Mascota:</th>
                 <td style="padding: 10px; border-bottom: 1px solid rgb(255, 200, 69);">{{petName}}</td>
@@ -26,13 +28,21 @@
             </tr>
             <tr>
                 <th style="padding: 10px; border-bottom: 1px solid rgb(255, 200, 69);">Fecha y Hora:</th>
-                <td style="padding: 10px; border-bottom: 1px solid rgb(255, 200, 69);">{{dateTime}}</td>
+                <td style="padding: 10px; border-bottom: 1px solid rgb(255, 200, 69);">{{dateTime}}hs</td>
             </tr>
         </table>
-        <p style="color: rgb(0, 147, 178); text-align: center">Si tienes alguna pregunta, no dudes en contactarnos a través de WhatsApp. 24hs antes del turno, nosotros te estaremos contactando para confirmar detalles.</p>
+        <p style="color: rgb(0, 147, 178); text-align: center">Si tienes alguna pregunta, no dudes en contactarnos a
+            través de WhatsApp. 24hs antes del turno, nosotros te estaremos contactando para confirmar detalles.</p>
         <p style="color: rgb(0, 147, 178);">¡Esperamos ver a {{petName}} pronto!</p>
-        <p style="font-size: 1rem; color: rgb(0, 147, 178);">OH MY DOGGIE, Calle 106 #54 - 93 local 3, Bogotá, Colombia, +57 350 5107369</p>
-        <img src="https://tu-sitio-web.com/logo.png" class="logo_footer" style="max-width: 150px;">
+        <div>
+            <p style="font-size: 0.9rem; color: rgb(0, 147, 178); text-align: center;">OH MY DOGGIE, Calle 106 #54 - 93 local 3, Bogotá,
+                Colombia,</a>
+            </p>
+        </div>
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <a href="https://wa.me/573505107369" style="color: rgb(0, 147, 178); text-decoration: underline; margin-bottom: 15px;">+57 350 5107369</a>
+            <img src="https://tu-sitio-web.com/logo.png" class="logo_footer" style="max-width: 150px;">
+        </div>
     </div>
 </body>
 

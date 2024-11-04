@@ -1,7 +1,7 @@
 require("dotenv").config();
 const nodemailer = require("nodemailer");
 const fs = require('fs');
-const path = require('path'); // Para manejar rutas
+const path = require('path'); 
 
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
@@ -25,7 +25,7 @@ const confirmationEmail = async ({ fullName, email, services, petName, dateTime 
     .filter(service => services[service])
     .map(service => {
       if (service === "transport") return "Transporte";
-      if (service === "grooming") return "Peluquería";
+      if (service === "grooming") return "Baño y Peluquería";
       if (service === "rideRecreation") return "Paseo y recreación";
       if (service === "other") return "Otro servicio";
       return service;
@@ -72,7 +72,6 @@ const confirmationEmail = async ({ fullName, email, services, petName, dateTime 
         subject: "Nuevo turno agendado",
         text: `Mensaje de: ${fullName}\n\nMensaje: ${message} \n\nTeléfono: ${phoneNumber} \n\nServicios: ${selectedServices} \n\nMascota: ${petName} \n\nFecha y hora: ${dateTime}hs`,
       });
-      console.log("Correo electrónico enviado con éxito");
     } catch (error) {
       console.error("Error al enviar el correo electrónico:", error);
       throw error;

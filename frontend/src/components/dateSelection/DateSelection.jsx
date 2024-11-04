@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import styles from "./DateSelection.module.css";
 import { isSunday, isSaturday, format } from "date-fns";
 
 const DateSelection = ({ setFieldValue, dateFieldName }) => {
@@ -43,9 +42,9 @@ const DateSelection = ({ setFieldValue, dateFieldName }) => {
   const today = new Date();
 
   return (
-    <div className={styles.datePickerWrapper}>
+    <div>
       <DatePicker
-        className={styles.datePicker}
+        // className={styles.datePicker}
         selected={selectedDate}
         onChange={handleDateChange}
         placeholderText="Selecciona una fecha"
@@ -57,7 +56,7 @@ const DateSelection = ({ setFieldValue, dateFieldName }) => {
       
       {selectedDate && (
         <DatePicker
-          className={styles.timePicker}
+          // className={styles.timePicker}
           selected={selectedTime}
           onChange={handleTimeChange}
           showTimeSelect
