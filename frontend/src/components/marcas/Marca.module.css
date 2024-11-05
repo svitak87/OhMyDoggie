@@ -4,7 +4,7 @@
     background-color: var(--white-color); 
     padding: 15px;
     border-radius: 15px;
-    width: 30%;
+    width: 90%;
     margin: 10px 20px;
     
 }
@@ -48,7 +48,19 @@
     line-height: 1.2;
 }
 
-@media (min-width: 200px) and (max-width: 1024px){
+@media(min-width: 768px){
+    .container{
+        width: 40%;
+    }
+}
+
+@media(min-width: 1024px){
+    .container{
+        width: 29%;
+    }
+}
+
+/* @media (min-width: 200px) and (max-width: 1024px){
     .container{
         width: 40%
     }
@@ -68,4 +80,4 @@
     .container{
         width: 80%
     }
-}
+} */

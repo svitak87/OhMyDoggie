@@ -120,6 +120,7 @@
 .rights_container{
     text-align: center;
     font-size: 0.8rem;
+    margin-top: 10px;
 }
 
 .rights_container a{
@@ -127,8 +128,9 @@
     color: var(--white-color);
 }
 
-@media(min-width:200px) and (max-width: 690px){
+@media(min-width:100px) and (max-width: 399px){
     .rights_container p{
-        margin-bottom: 20px;
+        width: 100%;
+        padding: 10px 0;
     }
 }
