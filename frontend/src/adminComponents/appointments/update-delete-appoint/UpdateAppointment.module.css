@@ -81,7 +81,6 @@ h3 {
 }
 
 .buttons_container{
-    border: 1px solid red;
     display: flex;
     width: 100%;
     margin: 20px auto;
