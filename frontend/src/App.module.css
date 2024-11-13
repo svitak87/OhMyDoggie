@@ -26,3 +26,26 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+.spinner {
+  border: 8px solid rgba(255, 255, 255, 0.2); /* Color de fondo del spinner */
+  border-top: 8px solid white; /* Color blanco para la parte superior del spinner */
+  border-radius: 50%;
+  width: 60px; /* Tamaño del spinner */
+  height: 60px;
+  animation: spin 1s linear infinite; /* Animación de giro */
+  position: fixed;
+  top: 50%; /* Posición centrada verticalmente */
+  left: 50%; /* Posición centrada horizontalmente */
+  transform: translate(-50%, -50%); /* Ajuste para que el centro sea justo en el medio */
+  z-index: 9999; /* Asegura que el spinner esté encima de todo */
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg); /* Inicia en 0 grados */
+  }
+  100% {
+    transform: rotate(360deg); /* Gira hasta 360 grados */
+  }
+}

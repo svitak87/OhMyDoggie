@@ -22,8 +22,8 @@ const Snacks = () => {
         {isVisible && (
           <div className={styles.overlay}>
             <h2 className={styles.title}>Snacks y accesorios</h2>
-            <button onClick={handleVisible} className={styles.button}>
-              x
+            <button onClick={handleVisible} className={styles.button} translate="no">
+            X
             </button>
             <div className={styles.container}>
               {data.length > 0 &&

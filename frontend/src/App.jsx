@@ -28,7 +28,7 @@ function App() {
         <Route
           path="/"
           element={
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<div className={styles.spinner}></div>}>
               <Navbar />
               <Intro />
               <Nosotros />
@@ -42,7 +42,7 @@ function App() {
         <Route
           path="/reserva"
           element={
-            <Suspense fallback={<div>Loading form...</div>}>
+            <Suspense fallback={<div className={styles.spinner}></div>}>
               <BathForm />
             </Suspense>
           }
@@ -51,7 +51,7 @@ function App() {
         <Route
           path="/login"
           element={
-            <Suspense fallback={<div>Loading login...</div>}>
+            <Suspense fallback={<div className={styles.spinner}></div>}>
               <LoguinAdmin />
             </Suspense>
           }
@@ -60,7 +60,7 @@ function App() {
         <Route
           path="/administracion-ohmydoggie"
           element={
-            <Suspense fallback={<div>Loading admin...</div>}>
+            <Suspense fallback={<div className={styles.spinner}></div>}>
               {token ? <Appointments /> : <Navigate to="/login" />}
             </Suspense>
           }

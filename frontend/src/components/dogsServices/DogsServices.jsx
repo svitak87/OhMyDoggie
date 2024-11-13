@@ -22,8 +22,8 @@ const DogsServices = () => {
     <>
       {isVisible && (
         <div className={styles.overlay}>
-          <button onClick={handleVisible} className={styles.button}>
-            x
+          <button onClick={handleVisible} className={styles.button} translate="no">
+          X
           </button>
           <div className={styles.container}>
             {services.length > 0 &&

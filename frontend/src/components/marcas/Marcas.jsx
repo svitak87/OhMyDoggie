@@ -21,8 +21,8 @@ const Marcas = () => {
     <>
       {isVisible && (
         <div className={styles.overlay}>
-          <button onClick={handleVisible} className={styles.button}>
-            x
+          <button onClick={handleVisible} className={styles.button} translate="no">
+          X
           </button>
           <div className={styles.container}>
             {data.length > 0 &&
