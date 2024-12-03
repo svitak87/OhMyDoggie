@@ -14,10 +14,13 @@ const server = express();
 
 // Limitar peticiones
 const serverLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutos
-  max: 100,
+  windowMs: 60 * 60 * 1000, // 1 hora en milisegundos
+  max: 20, // Límite de 20 solicitudes por IP
   message: "Too many requests from this IP, please try again later.",
+  standardHeaders: true, // Envía información de límites en los encabezados `RateLimit-*`
+  legacyHeaders: false, // Deshabilita los encabezados `X-RateLimit-*`
 });
+
 
 // Middlewares
 server.use(morgan("dev"));
@@ -38,7 +41,7 @@ server.use(compression({
   },
   brotli: {
     enabled: true, // Habilitar Brotli si el navegador lo soporta
-    zlib: { level: 11 }  // Nivel de compresión máximo para Brotli
+    zlib: { level: 8 }  // Nivel de compresión máximo para Brotli
   }
 }));
 
