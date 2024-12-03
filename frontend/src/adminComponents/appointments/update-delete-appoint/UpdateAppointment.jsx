@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import {
@@ -13,15 +13,12 @@ const validationSchema = Yup.object({
   email: Yup.string()
     .email("Debe ser un correo electrónico válido")
     .required("El correo electrónico es obligatorio"),
-  newPhoneNumber: Yup.string().matches(
-    /^[0-9]*$/,
-    "El número de teléfono solo puede contener dígitos"
-  ),
+  newPhoneNumber: Yup.string(),
   newEmail: Yup.string().email("Debe ser un correo electrónico válido"),
   newDateTime: Yup.string(),
 });
 
-const UpdateAppointment = ({ email, setUpdateForm }) => {
+const UpdateAppointment = ({ email, setUpdateForm, id }) => {
   const dispatch = useDispatch();
 
   const handleClose = () => {
@@ -51,6 +48,7 @@ const UpdateAppointment = ({ email, setUpdateForm }) => {
   return (
     <Formik
       initialValues={{
+        id: id,
         email: email,
         newPhoneNumber: "",
         newEmail: "",

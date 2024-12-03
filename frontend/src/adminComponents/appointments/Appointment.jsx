@@ -23,7 +23,7 @@ const Appointment = ({
   const [updateForm, setUpdateForm] = useState(false);
   const [assignChart, setAssignChart] = useState(false);
   const dispatch = useDispatch();
-  console.log(phoneNumber);
+ 
   const assignHandler = () => {
     setAssignChart((prev) => !prev);
   };
@@ -47,7 +47,7 @@ const Appointment = ({
   return (
     <>
       {updateForm ? (
-        <UpdateAppointment email={email} setUpdateForm={setUpdateForm} />
+        <UpdateAppointment email={email} setUpdateForm={setUpdateForm} id={id}/>
       ) : (
         <div className={styles.container}>
           <div className={styles.left_container}>

@@ -46,7 +46,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
     case UPDATE_APPOINTMENT:
       return {
         ...state,
-        appointment: payload,
+        appointments: payload,
       };
 
     case DELETE_APPOINTMENT:

@@ -83,8 +83,10 @@ route.post("/add-appointment", async (req, res) => {
 
 route.put("/update_appointment", async (req, res) => {
   try {
-    const { email, newEmail, newPhoneNumber, newDateTime } = req.body;
+    const { email, newEmail, newPhoneNumber, newDateTime, id } = req.body;
+    
     await updateAppointment({
+      id,
       email,
       newEmail,
       newPhoneNumber,

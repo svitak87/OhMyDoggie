@@ -68,11 +68,11 @@ const assignColaborator = async (data) => {
 //actualizar el turno
 const updateAppointment = async (appointmentData) => {
   try {
-    const { email, newEmail, newPhoneNumber, newDateTime } = appointmentData;
+    const { email, newEmail, newPhoneNumber, newDateTime, id } = appointmentData;
 
-    if (email) {
+    if (id) {
       const existingAppointment = await Appointment.findOne({
-        where: { email: email },
+        where: { id: id },
       });
 
       if (existingAppointment) {
@@ -82,7 +82,7 @@ const updateAppointment = async (appointmentData) => {
             phoneNumber: newPhoneNumber || existingAppointment.phoneNumber,
             dateTime: newDateTime || existingAppointment.dateTime
           },
-          { where: { email: email } }
+          { where: { id: id } }
         );
         if (affectedCount > 0) {
           return { message: "Appointment successfully updated" };
