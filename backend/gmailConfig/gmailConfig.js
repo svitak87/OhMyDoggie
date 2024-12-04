@@ -45,8 +45,6 @@ const confirmationEmail = async ({ fullName, email, services, petName, dateTime 
       subject: `Turno confirmado para ${petName} ✔`,
       html: htmlTemplate, 
     });
-
-    console.log("Correo de confirmación enviado");
   } catch (error) {
     console.error("Error al enviar el correo de confirmación:", error);
   }
