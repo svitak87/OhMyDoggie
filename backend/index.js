@@ -1,64 +1,54 @@
-require("dotenv").config();
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
 const helmet = require("helmet");
-const compression = require("compression"); // Agregar la librería de compresión
+const compression = require("compression");
 const rateLimit = require("express-rate-limit");
 const router = require("./routes/appointments");
 const adminRoute = require("./routes/adminRoutes");
-const { sequelize } = require("./database");
+const { sequelize } = require("./database"); // Importar configuración de Sequelize
 
 const PORT = process.env.PORT || 3002;
 const server = express();
-
-// Limitar peticiones
-const serverLimiter = rateLimit({
-  windowMs: 60 * 60 * 1000, // 1 hora en milisegundos
-  max: 20, // Límite de 20 solicitudes por IP
-  message: "Too many requests from this IP, please try again later.",
-  standardHeaders: true, // Envía información de límites en los encabezados `RateLimit-*`
-  legacyHeaders: false, // Deshabilita los encabezados `X-RateLimit-*`
-});
-
 
 // Middlewares
 server.use(morgan("dev"));
 server.use(cors());
 server.use(express.json());
 server.use(helmet());
-server.use(serverLimiter);
+server.use(compression());
 server.use(express.urlencoded({ extended: true }));
-
-// Habilitar compresión Brotli y Gzip
-server.use(compression({
-  filter: (req, res) => {
-    // Aplicar la compresión solo si la solicitud lo permite
-    if (req.headers['x-no-compression']) {
-      return false;
-    }
-    return compression.filter(req, res);
-  },
-  brotli: {
-    enabled: true, // Habilitar Brotli si el navegador lo soporta
-    zlib: { level: 8 }  // Nivel de compresión máximo para Brotli
-  }
-}));
 
 // Rutas
 server.use(router);
 server.use(adminRoute);
 
+// Limitar peticiones
+const serverLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000, // 1 hora
+  max: 20, // Límite de 20 solicitudes
+  message: "Too many requests from this IP, please try again later.",
+});
+server.use(serverLimiter);
+
 // Conectar a la base de datos y arrancar el servidor
 const main = async () => {
   try {
+    // Probar la conexión a la base de datos
+    await sequelize.authenticate();
+    console.log("Database connected successfully!");
+
+    // Sincronizar modelos
     await sequelize.sync({ force: false });
-    console.log("Connected to the database ohmydoggie");
+    console.log("Database synced successfully!");
+
+    // Iniciar el servidor
     server.listen(PORT, () => {
       console.log(`Server is running on port: http://localhost:${PORT}`);
     });
   } catch (error) {
     console.error("Unable to connect to the database:", error);
+    process.exit(1); // Finaliza el proceso si hay un error
   }
 };
 
