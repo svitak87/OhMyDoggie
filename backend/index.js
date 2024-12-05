@@ -8,7 +8,6 @@ const router = require("./routes/appointments");
 const adminRoute = require("./routes/adminRoutes");
 const { sequelize } = require("./database"); // Importar configuración de Sequelize
 
-const PORT = process.env.PORT || 3002;
 const server = express();
 
 // Middlewares
@@ -41,11 +40,6 @@ const main = async () => {
     // Sincronizar modelos
     await sequelize.sync({ force: false });
     console.log("Database synced successfully!");
-
-    // Iniciar el servidor
-    server.listen(PORT, () => {
-      console.log(`Server is running on port: http://localhost:${PORT}`);
-    });
   } catch (error) {
     console.error("Unable to connect to the database:", error);
     process.exit(1); // Finaliza el proceso si hay un error
@@ -53,3 +47,6 @@ const main = async () => {
 };
 
 main();
+
+// Exporta la instancia del servidor para Vercel
+module.exports = server;
