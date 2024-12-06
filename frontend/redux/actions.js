@@ -17,7 +17,7 @@ export const loginAdmin = (adminData) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(
-        "http://localhost:3002/login-admin",
+        "https://ohmydogggiebackend.vercel.app/login-admin",
         adminData
       );
       dispatch({ type: LOGIN_ADMIN, payload: response.data.token });
@@ -60,7 +60,7 @@ export const getAllAppointments = () => {
   return async (dispatch) => {
     try {
       const response = await axios.get(
-        "http://localhost:3002/all-appointments"
+        "https://ohmydogggiebackend.vercel.app/all-appointments"
       );
       
       dispatch({ type: GET_ALL_APPOINTMENTS, payload: response.data });
@@ -76,7 +76,7 @@ export const createAppointment = (appointmentData) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(
-        "http://localhost:3002/add-appointment",
+        "https://ohmydogggiebackend.vercel.app/add-appointment",
         appointmentData
       );
       dispatch({ type: CREATE_APPOINTMENT, payload: response.data });
@@ -92,7 +92,7 @@ export const updateAppointment = (appointmentData) => {
   return async (dispatch) => {
     try {
       const response = await axios.put(
-        "http://localhost:3002/update_appointment",
+        "https://ohmydogggiebackend.vercel.app/update_appointment",
         appointmentData
       );
       dispatch({ type: UPDATE_APPOINTMENT, payload: response.data });
@@ -106,7 +106,7 @@ export const assignAppointment = (colaborator, id) => {
   return async (dispatch) => {
     try {
       const data = { colaborator, id };
-      const response = await axios.put("http://localhost:3002/assign-colaborator", data);
+      const response = await axios.put("https://ohmydogggiebackend.vercel.app/assign-colaborator", data);
 
       dispatch({ type: ASSIGN_APPOINTMENT, payload: response.data });
     } catch (error) {
@@ -120,7 +120,7 @@ export const deleteAppointment = (id) => {
   return async (dispatch) => {
     try {
       const response = await axios.delete(
-        `http://localhost:3002/delete-appointment/${id}`
+        `https://ohmydogggiebackend.vercel.app/delete-appointment/${id}`
       );
       dispatch({ type: DELETE_APPOINTMENT, payload: response.data });
     } catch (error) {
@@ -134,7 +134,7 @@ export const getAppointmentByQuery = (value) => {
   return async (dispatch) => {
     try {
       const response = await axios.get(
-        `http://localhost:3002/search-by-query?value=${value}`
+        `https://ohmydogggiebackend.vercel.app/search-by-query?value=${value}`
       );
 
       if (response.status !== 200) {
