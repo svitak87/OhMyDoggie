@@ -10,7 +10,6 @@ let sequelize;
 
 try {
   sequelize = new Sequelize(process.env.DATA_BASE_PUBLIC, {
-    logging: console.log,
     dialect: "postgres", // Asegúrate de que el dialecto sea explícito
     dialectOptions: isProduction
       ? {
@@ -21,6 +20,21 @@ try {
         }
       : {},
   });
+  const { Client } = require('pg');
+
+const client = new Client({
+  connectionString: process.env.DATA_BASE_PUBLIC, // Usa tu URL de conexión
+});
+
+client.connect()
+  .then(() => {
+    console.log("Conexión exitosa a la base de datos.");
+    client.end();
+  })
+  .catch(err => {
+    console.error("Error al conectar a la base de datos:", err);
+  });
+
 
   console.log("Sequelize initialized successfully!");
 } catch (err) {
