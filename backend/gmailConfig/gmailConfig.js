@@ -44,6 +44,13 @@ const confirmationEmail = async ({ fullName, email, services, petName, dateTime 
       to: email,
       subject: `Turno confirmado para ${petName} ✔`,
       html: htmlTemplate, 
+      attachments: [
+        {
+          filename: 'logo_footer.jpg',
+          path: path.join(__dirname, '../public/logo_footer.jpg'), // Ruta local de la imagen
+          cid: 'logo_footer', // Identificador único para la imagen
+        },
+      ],
     });
   } catch (error) {
     console.error("Error al enviar el correo de confirmación:", error);
