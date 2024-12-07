@@ -1,6 +1,7 @@
 .container {
     display: flex;
     flex-direction: column;
+    position: relative;
     border: 7px solid var(--yellow-color);
     background-color: var(--white-color); 
     padding: 15px;
@@ -21,45 +22,24 @@
     font-size: 1rem;
 }
 
-@media(min-width: 100px) and (max-width: 399px){
-    .container{
-        height: 260px;
-    }
-    .description{
-        line-height: 1.2rem;
-    }
+.icon{
+    width: 5%;
+    position: absolute;
+    right: 30px;
+    bottom: 10px;
+    font-size: 2rem;
 }
 
-@media(min-width: 400px){
-    .container{
-        height: 230px;
-    }
-}
-
-@media(min-width: 540px){
-    .container{
-        height: 200px;
-    }
-}
 @media(min-width: 768px){
     .container{
         width: 40%;
-        height: 260px;       
-    }
-    .description{
-        line-height: 1.2rem;
+        height: 300px;
     }
 }
 
 @media(min-width: 1024px){
     .container{
-        height: 230px;
-    }
-}
-
-@media(min-width: 1280px){
-    .description{
-        line-height: 1.5rem;
+        height: 250px;
     }
 }
 
