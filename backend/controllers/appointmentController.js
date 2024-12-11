@@ -6,25 +6,36 @@ const { Appointment } = require("../database");
 const addAppointment = async (appointmentData) => {
   const { fullName, email, phoneNumber, services, petName, message, dateTime } =
     appointmentData;
-  if (
-    !fullName ||
-    !email ||
-    !phoneNumber ||
-    !services ||
-    !petName ||
-    !message 
-  ) {
-    throw new Error("Los datos obligatorios deben ser proporcionados");
+
+  // Validar campos obligatorios
+  if (!fullName || !email || !phoneNumber || !services || !petName || !message) {
+    throw new Error("Todos los campos obligatorios deben ser proporcionados.");
   }
-  if (
-    (services.transport || services.grooming) &&
-    !dateTime
-  ) {
-    throw new Error("La fecha y hora son obligatorias para los servicios seleccionados");
+
+  // Validar fecha y hora para ciertos servicios
+  if ((services.transport || services.grooming) && !dateTime) {
+    throw new Error("La fecha y hora son obligatorias para los servicios seleccionados.");
   }
-  const appointmentCreated = await Appointment.create(appointmentData);
-  return appointmentCreated;
+
+  // Crear turno en la base de datos
+  try {
+    const appointmentCreated = await Appointment.create({
+      fullName,
+      email,
+      phoneNumber,
+      services,
+      petName,
+      message,
+      dateTime,
+    });
+
+    return appointmentCreated;
+  } catch (error) {
+    console.error("Error al crear el turno:", error.message);
+    throw new Error("Hubo un error al crear el turno. Por favor, inténtalo de nuevo.");
+  }
 };
+
 
 //traer todos los turnos
 const getAllAppointments = async () => {

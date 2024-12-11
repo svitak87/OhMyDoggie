@@ -13,7 +13,11 @@ const server = express();
 
 // Middlewares
 server.use(morgan("dev"));
-server.use(cors());
+server.use(cors({
+  origin: "https://ohmydoggie.vercel.app/", // Solo permite esta URL
+  methods: ["GET", "POST", "PUT", "DELETE"], // Métodos HTTP permitidos
+  allowedHeaders: ["Content-Type", "Authorization"], // Encabezados permitidos
+}));
 server.use(express.json());
 server.use(helmet());
 server.use(compression());

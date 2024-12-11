@@ -7,6 +7,9 @@ import FooterMobile from "./FooterMobile";
 const Footer = () => {
   const [isMobile, setIsMobile] = useState(false);
 
+  const phoneNumber = "+57 3505107369";
+  const whatsappLink = `https://wa.me/${phoneNumber.replace(/\D/g, "")}`;
+
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 660);
@@ -62,7 +65,16 @@ const Footer = () => {
             <h3>Nuestro local</h3>
             <p>Bogotá, Puente Largo, Calle 106 #54 - 93 local 3</p>
             <h3>WhatsApp</h3>
-            <p>(+57)350-510-73-69</p>
+            <h3>
+              <a
+                href={whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.whatsapp_link}
+              >
+                {phoneNumber}
+              </a>
+            </h3>
             <img
               src={whatsappQR}
               alt="QR_whatsapp_ohmydoggie"
