@@ -128,6 +128,10 @@
     color: var(--white-color);
 }
 
+.whatsapp_link{
+    color: var(--green-blue-color);
+}
+
 @media(min-width:100px) and (max-width: 399px){
     .rights_container p{
         width: 100%;

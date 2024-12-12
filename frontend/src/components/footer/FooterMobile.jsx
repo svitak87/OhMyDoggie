@@ -4,7 +4,7 @@ import whatsappQR from "../../assets/qrcode-573505107369.jpg";
 import styles from "./FooterMobile.module.css";
 
 const FooterMobile = () => {
-  const phoneNumber = "+573505107369";
+  const phoneNumber = "+57 350 5107369";
   const whatsappLink = `https://wa.me/${phoneNumber.replace(/\D/g, "")}`;
 
   return (

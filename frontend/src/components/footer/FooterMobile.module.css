@@ -47,8 +47,7 @@
   .contact {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content:flex-start;
     width: 80%;
     padding: 20px 15px;
   }
@@ -130,4 +129,8 @@
 .rights_container a{
     text-decoration: none;
     color: var(--white-color);
+}
+
+.whatsapp_link{
+  color: var(--green-blue-color);
 }

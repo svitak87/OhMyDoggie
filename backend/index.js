@@ -14,7 +14,7 @@ const server = express();
 // Middlewares
 server.use(morgan("dev"));
 server.use(cors({
-  origin: "https://ohmydoggie.vercel.app/", // Solo permite esta URL
+  origin: "https://ohmydoggie.vercel.app", // Solo permite esta URL
   methods: ["GET", "POST", "PUT", "DELETE"], // Métodos HTTP permitidos
   allowedHeaders: ["Content-Type", "Authorization"], // Encabezados permitidos
 }));
